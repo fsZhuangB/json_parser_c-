@@ -16,6 +16,7 @@ enum class json_type {
 
 // define json's data structure
 class json_value {
+    public:
     json_type type;
 };
 
