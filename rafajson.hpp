@@ -1,6 +1,7 @@
 #ifndef RAFAJSON_H__
 #define RAFAJSON_H__
-#include <string>
+// #include <string>
+#include <assert.h>
 
 // enumerate six kind of json type
 enum class json_type { 
@@ -22,10 +23,10 @@ class json_value {
 
 
 struct json_context {
-    std::string json;
+    const char* json;
 };
 
-// the return value
+// the return value of result
 enum {
     JSON_PARSE_OK = 0,
     JSON_PARSE_EXPECT_VALUE,
@@ -34,13 +35,13 @@ enum {
 };
 
 /* this function parse the json*/
-int json_parse(json_value* value, const std::string json);
+int json_parse(json_value* value, const char* json);
 
 /* this function get the type of result */
 json_type json_get_type(const json_value* value);
 
 /* ws = *(%x20 / %x09 / %x0A / %x0D) */
-static void json_parse_whiteSpace(json_context* jsonValue);
+static void json_parse_whiteSpace(json_context* c);
 
 /* value = null / false / true */
 static int json_parse_value(json_context* c, json_value* value);
