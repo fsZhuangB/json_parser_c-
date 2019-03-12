@@ -1,4 +1,4 @@
-/* a test function for my library */
+/* test file */
 
 #include <iostream>
 #include <stdlib.h>
@@ -8,7 +8,8 @@ static int main_ret = 0;
 static int test_count = 0;
 static int test_pass = 0;
 
-/**/
+/* this macro get four parameters */
+/* if it fails, print stderr to screen */
 #define EXPECT_EQ_BASE(equality, expect, actual, format) \
     do {\
         test_count++;\
@@ -20,6 +21,8 @@ static int test_pass = 0;
         }\
     } while(0)
 
+
+/* this macro get the EXPECT_EQ_BASE to show the result */
 #define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
 
 static void test_parse_null() {

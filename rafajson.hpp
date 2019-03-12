@@ -20,6 +20,11 @@ class json_value {
     json_type type;
 };
 
+
+struct json_context {
+    std::string json;
+};
+
 // the return value
 enum {
     JSON_PARSE_OK = 0,
@@ -33,5 +38,14 @@ int json_parse(json_value* value, const std::string json);
 
 /* this function get the type of result */
 json_type json_get_type(const json_value* value);
+
+/* ws = *(%x20 / %x09 / %x0A / %x0D) */
+static void json_parse_whiteSpace(json_context* jsonValue);
+
+/* value = null / false / true */
+static int json_parse_value(json_context* c, json_value* value);
+
+/* null = "null" */
+static int json_parse_null(json_context* c, json_value* value);
 
 #endif

@@ -1,7 +1,9 @@
 # rafa_json
-A good helper for you to parse json!
-## why this name
-I hope this tool will **rapid**, **fast** to parse json!
+- 方便快捷的JSON解析库
+- 使用 `c++` 开发
+
+## 为什么叫这个名字
+取自英文的 **rapid**, **fast**，希望这个库快速的处理JSON文本！
 
 
 ## 系统的主要设想
