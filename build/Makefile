@@ -111,17 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named rafa
+# Target rules for targets named Rafa
 
 # Build rule for target.
-rafa: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rafa
-.PHONY : rafa
+Rafa: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Rafa
+.PHONY : Rafa
 
 # fast build rule for target.
-rafa/fast:
-	$(MAKE) -f CMakeFiles/rafa.dir/build.make CMakeFiles/rafa.dir/build
-.PHONY : rafa/fast
+Rafa/fast:
+	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/build
+.PHONY : Rafa/fast
+
+Users/fszhuangb/Documents/rafa_json/parser.o: Users/fszhuangb/Documents/rafa_json/parser.cpp.o
+
+.PHONY : Users/fszhuangb/Documents/rafa_json/parser.o
+
+# target to build an object file
+Users/fszhuangb/Documents/rafa_json/parser.cpp.o:
+	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.o
+.PHONY : Users/fszhuangb/Documents/rafa_json/parser.cpp.o
+
+Users/fszhuangb/Documents/rafa_json/parser.i: Users/fszhuangb/Documents/rafa_json/parser.cpp.i
+
+.PHONY : Users/fszhuangb/Documents/rafa_json/parser.i
+
+# target to preprocess a source file
+Users/fszhuangb/Documents/rafa_json/parser.cpp.i:
+	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.i
+.PHONY : Users/fszhuangb/Documents/rafa_json/parser.cpp.i
+
+Users/fszhuangb/Documents/rafa_json/parser.s: Users/fszhuangb/Documents/rafa_json/parser.cpp.s
+
+.PHONY : Users/fszhuangb/Documents/rafa_json/parser.s
+
+# target to generate assembly for a file
+Users/fszhuangb/Documents/rafa_json/parser.cpp.s:
+	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.s
+.PHONY : Users/fszhuangb/Documents/rafa_json/parser.cpp.s
 
 Users/fszhuangb/Documents/rafa_json/test.o: Users/fszhuangb/Documents/rafa_json/test.cpp.o
 
@@ -129,7 +156,7 @@ Users/fszhuangb/Documents/rafa_json/test.o: Users/fszhuangb/Documents/rafa_json/
 
 # target to build an object file
 Users/fszhuangb/Documents/rafa_json/test.cpp.o:
-	$(MAKE) -f CMakeFiles/rafa.dir/build.make CMakeFiles/rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.o
+	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.o
 .PHONY : Users/fszhuangb/Documents/rafa_json/test.cpp.o
 
 Users/fszhuangb/Documents/rafa_json/test.i: Users/fszhuangb/Documents/rafa_json/test.cpp.i
@@ -138,7 +165,7 @@ Users/fszhuangb/Documents/rafa_json/test.i: Users/fszhuangb/Documents/rafa_json/
 
 # target to preprocess a source file
 Users/fszhuangb/Documents/rafa_json/test.cpp.i:
-	$(MAKE) -f CMakeFiles/rafa.dir/build.make CMakeFiles/rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.i
+	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.i
 .PHONY : Users/fszhuangb/Documents/rafa_json/test.cpp.i
 
 Users/fszhuangb/Documents/rafa_json/test.s: Users/fszhuangb/Documents/rafa_json/test.cpp.s
@@ -147,7 +174,7 @@ Users/fszhuangb/Documents/rafa_json/test.s: Users/fszhuangb/Documents/rafa_json/
 
 # target to generate assembly for a file
 Users/fszhuangb/Documents/rafa_json/test.cpp.s:
-	$(MAKE) -f CMakeFiles/rafa.dir/build.make CMakeFiles/rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.s
+	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.s
 .PHONY : Users/fszhuangb/Documents/rafa_json/test.cpp.s
 
 # Help Target
@@ -158,7 +185,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... rafa"
+	@echo "... Rafa"
+	@echo "... Users/fszhuangb/Documents/rafa_json/parser.o"
+	@echo "... Users/fszhuangb/Documents/rafa_json/parser.i"
+	@echo "... Users/fszhuangb/Documents/rafa_json/parser.s"
 	@echo "... Users/fszhuangb/Documents/rafa_json/test.o"
 	@echo "... Users/fszhuangb/Documents/rafa_json/test.i"
 	@echo "... Users/fszhuangb/Documents/rafa_json/test.s"

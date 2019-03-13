@@ -21,7 +21,7 @@ class json_value {
     json_type type;
 };
 
-
+/* store the context of JSON text */
 struct json_context {
     const char* json;
 };

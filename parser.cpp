@@ -10,7 +10,14 @@ int json_parse(json_value * value, const char* json)
     value->type = json_type::JSON_NULL;
     json_parse_whiteSpace(&c);
 
-    return json_parse_value(&c, value);
+    int retValue = json_parse_value(&c, value);
+    if (retValue == JSON_PARSE_OK)
+        {
+            json_parse_whiteSpace(&c);
+            if (*c.json != '\0')
+                retValue = JSON_PARSE_ROOT_NOT_SINGULAR;
+        }
+    return retValue;
 }
 
 /* this function parse the whitespace of JSON */
@@ -45,5 +52,12 @@ static int json_parse_value(json_context* c, json_value* value)
         case '\0': return JSON_PARSE_EXPECT_VALUE;
         default:   return JSON_PARSE_INVALID_VALUE;
     }
+}
+
+/* this function get the type of result */
+json_type json_get_type(const json_value* value)
+{
+    assert(value != nullptr);
+    return value->type;
 }
 
