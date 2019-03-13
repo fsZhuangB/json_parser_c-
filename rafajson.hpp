@@ -43,10 +43,16 @@ json_type json_get_type(const json_value* value);
 /* ws = *(%x20 / %x09 / %x0A / %x0D) */
 static void json_parse_whiteSpace(json_context* c);
 
-/* value = null / false / true */
+/* value == null / false / true */
 static int json_parse_value(json_context* c, json_value* value);
 
-/* null = "null" */
+/* null == "null" */
 static int json_parse_null(json_context* c, json_value* value);
+
+/* true == "true" */
+static int json_parse_true(json_context* c, json_value* value);
+
+/* false == "false" */
+static int json_parse_false(json_context* c, json_value* value);
 
 #endif

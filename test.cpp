@@ -26,18 +26,34 @@ static int test_pass = 0;
 #define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
 
 static void test_parse_null() {
-    json_value v;
-    v.type = json_type::JSON_TRUE;
-    EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&v, "null"));
-    EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&v));
-    EXPECT_EQ_INT(JSON_PARSE_ROOT_NOT_SINGULAR, json_parse(&v, "null x"));
-    EXPECT_EQ_INT(JSON_PARSE_INVALID_VALUE, json_parse(&v, "-"));
+    json_value value;
+    value.type = json_type::JSON_TRUE;
+    EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&value, "null"));
+    EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
+    EXPECT_EQ_INT(JSON_PARSE_ROOT_NOT_SINGULAR, json_parse(&value, "null x"));
+    EXPECT_EQ_INT(JSON_PARSE_INVALID_VALUE, json_parse(&value, "-"));
 }
 
-/* ... */
+static void test_parse_true() {
+    json_value value;
+    value.type = json_type::JSON_TRUE;
+    EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&value, "true"));
+    EXPECT_EQ_INT(json_type::JSON_TRUE, json_get_type(&value));
+}
+
+static void test_parse_false() {
+    json_value value;
+    value.type = json_type::JSON_FALSE;
+    EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&value, "false"));
+    EXPECT_EQ_INT(json_type::JSON_FALSE, json_get_type(&value));
+}
+
+
 
 static void test_parse() {
     test_parse_null();
+    test_parse_true();
+    test_parse_false();
     /* ... */
 }
 

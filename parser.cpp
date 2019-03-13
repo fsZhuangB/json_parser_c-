@@ -2,6 +2,7 @@
 #define EXPECT(c, ch) do { assert(*c->json == (ch)); c->json++; } while (0)
 
 /* this function use the function below to parse JSON */
+/* ws value ws */
 int json_parse(json_value * value, const char* json)
 {
     json_context c;
@@ -21,7 +22,7 @@ int json_parse(json_value * value, const char* json)
 }
 
 /* this function parse the whitespace of JSON */
-/* ws = *(%x20 / %x09 / %x0A / %x0D) */
+/* ws == *(%x20 / %x09 / %x0A / %x0D) */
 static void json_parse_whiteSpace(json_context* c)
 {
     const char* p = c->json;
@@ -31,7 +32,7 @@ static void json_parse_whiteSpace(json_context* c)
 }
 
 /* this function parse null of JSON */
-/* null = "null" */
+/* null == "null" */
 static int json_parse_null(json_context* c, json_value* value)
 {
     EXPECT(c, 'n');
@@ -42,6 +43,30 @@ static int json_parse_null(json_context* c, json_value* value)
     return JSON_PARSE_OK;
 }
 
+/* this function parse true of JSON */
+/* true == "true" */
+static int json_parse_true(json_context* c, json_value* value)
+{
+    EXPECT(c, 't');
+    if (c->json[0] != 'r' || c->json[1] != 'u' || c->json[2] != 'e')
+        return JSON_PARSE_INVALID_VALUE;
+    c->json += 3;
+    value->type = json_type::JSON_TRUE;
+    return JSON_PARSE_OK;
+}
+
+/* this function parse false of JSON */
+/* false == "false" */
+static int json_parse_false(json_context* c, json_value* value)
+{
+    EXPECT(c, 'f');
+    if (c->json[0] != 'a' || c->json[1] != 'l' || c->json[2] != 's' || c->json[3] != 'e')
+        return JSON_PARSE_INVALID_VALUE;
+    c->json += 4;
+    value->type = json_type::JSON_FALSE;
+    return JSON_PARSE_OK;
+}
+
 /* this function parse the 3 value of json */
 /* value = null / false / true */
 static int json_parse_value(json_context* c, json_value* value)
@@ -49,6 +74,8 @@ static int json_parse_value(json_context* c, json_value* value)
     switch (*c->json)
     {
         case 'n':  return json_parse_null(c, value);
+        case 't':  return json_parse_true(c, value);
+        case 'f':  return json_parse_false(c, value);
         case '\0': return JSON_PARSE_EXPECT_VALUE;
         default:   return JSON_PARSE_INVALID_VALUE;
     }
