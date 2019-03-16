@@ -57,42 +57,42 @@ include CMakeFiles/Rafa.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Rafa.dir/flags.make
 
-CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.o: CMakeFiles/Rafa.dir/flags.make
-CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.o: /Users/fszhuangb/Documents/rafa_json/parser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/fszhuangb/Documents/rafa_json/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.o -c /Users/fszhuangb/Documents/rafa_json/parser.cpp
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.o: CMakeFiles/Rafa.dir/flags.make
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.o: /Users/fszhuangb/Documents/rafa_json/src/parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/fszhuangb/Documents/rafa_json/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.o -c /Users/fszhuangb/Documents/rafa_json/src/parser.cpp
 
-CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/fszhuangb/Documents/rafa_json/parser.cpp > CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.i
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/fszhuangb/Documents/rafa_json/src/parser.cpp > CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.i
 
-CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/fszhuangb/Documents/rafa_json/parser.cpp -o CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.s
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/fszhuangb/Documents/rafa_json/src/parser.cpp -o CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.s
 
-CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.o: CMakeFiles/Rafa.dir/flags.make
-CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.o: /Users/fszhuangb/Documents/rafa_json/test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/fszhuangb/Documents/rafa_json/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.o -c /Users/fszhuangb/Documents/rafa_json/test.cpp
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.o: CMakeFiles/Rafa.dir/flags.make
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.o: /Users/fszhuangb/Documents/rafa_json/src/test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/fszhuangb/Documents/rafa_json/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.o -c /Users/fszhuangb/Documents/rafa_json/src/test.cpp
 
-CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/fszhuangb/Documents/rafa_json/test.cpp > CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.i
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/fszhuangb/Documents/rafa_json/src/test.cpp > CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.i
 
-CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/fszhuangb/Documents/rafa_json/test.cpp -o CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.s
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/fszhuangb/Documents/rafa_json/src/test.cpp -o CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.s
 
 # Object files for target Rafa
 Rafa_OBJECTS = \
-"CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.o" \
-"CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.o"
+"CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.o" \
+"CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.o"
 
 # External object files for target Rafa
 Rafa_EXTERNAL_OBJECTS =
 
-Rafa: CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.o
-Rafa: CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.o
+Rafa: CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.o
+Rafa: CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.o
 Rafa: CMakeFiles/Rafa.dir/build.make
 Rafa: CMakeFiles/Rafa.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/fszhuangb/Documents/rafa_json/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Rafa"

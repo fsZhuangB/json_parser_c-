@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/parser.cpp.o"
-  "CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test.cpp.o"
+  "CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.o"
+  "CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.o"
   "Rafa.pdb"
   "Rafa"
 )

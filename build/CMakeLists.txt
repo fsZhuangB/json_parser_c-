@@ -6,7 +6,7 @@ project (rafa_json)
 
 # 查找当前目录下所有源文件
 # 并将名称保存到 DIR_SRCS 变量
-aux_source_directory(/Users/fszhuangb/Documents/rafa_json DIR_SRCS)
+aux_source_directory(/Users/fszhuangb/Documents/rafa_json/src DIR_SRCS)
 
 # 指定生成目标
 add_executable(Rafa ${DIR_SRCS})
