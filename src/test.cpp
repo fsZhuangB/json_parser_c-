@@ -45,7 +45,8 @@ static void test_parse_false() {
     EXPECT_EQ_INT(json_type::JSON_FALSE, json_get_type(&value));
 }
 
-static void test_invalid_value() {
+
+static void test_parse_invalid_value() {
     json_value value;
     value.type = json_type::JSON_FALSE;
     EXPECT_EQ_INT(JSON_PARSE_INVALID_VALUE, json_parse(&value, "nul"));
@@ -58,16 +59,32 @@ static void test_invalid_value() {
 
 static void test_parse_expect_value() {
     json_value value;
-    
     value.type = json_type::JSON_FALSE;
 
+    EXPECT_EQ_INT(JSON_PARSE_EXPECT_VALUE, json_parse(&value, ""));
+    /* parse failed and return null */
+    EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
+
+    value.type = json_type::JSON_FALSE;
+    EXPECT_EQ_INT(JSON_PARSE_EXPECT_VALUE, json_parse(&value, " "));
+    EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
+}
+
+static void test_parse_root_not_singular() {
+    json_value value;
+    value.type = json_type::JSON_FALSE;
+
+    EXPECT_EQ_INT(JSON_PARSE_ROOT_NOT_SINGULAR, json_parse(&value, "null x"));
+    EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
 }
 
 static void test_parse() {
     test_parse_null();
     test_parse_true();
     test_parse_false();
-    test_invalid_value();
+    test_parse_invalid_value();
+    test_parse_expect_value();
+    test_parse_root_not_singular();
     /* ... */
 }
 
