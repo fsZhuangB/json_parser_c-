@@ -59,4 +59,9 @@ static int json_parse_false(json_context* c, json_value* value);
 /* this function get the number of json */
 double json_get_number(const json_value* value);
 
+/* this function parse the number of json 
+ * use c library function strtod()
+*/
+static int json_parse_number(json_context* c, json_value* value);
+
 #endif

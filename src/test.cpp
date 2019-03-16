@@ -32,7 +32,7 @@ static int test_pass = 0;
 /* EXPECT_EQ_DOUBLE
  * this macro get the EXPECT_EQ_BASE to show the double result 
  */
-#define EXPECT_EQ_DOUBLE(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%.5f");
+#define EXPECT_EQ_DOUBLE(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%.17g");
 
 /* TEST_ERROR 
  * simplify code to test error 
@@ -46,7 +46,14 @@ static int test_pass = 0;
         EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));    \
     } while(0)
 
-#define TEST_NUMBER(expect, json) \
+#define TEST_NUMBER(expect, json)                                      \
+    do                                                                 \
+    {                                                                  \
+        json_value value;                                              \
+        EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&value, json));        \
+        EXPECT_EQ_INT(json_type::JSON_NUMBER, json_get_type(&value));  \
+        EXPECT_EQ_DOUBLE(expect, json_get_number(&value));             \
+    } while(0)
 
 static void test_parse_null() {
     json_value value;
@@ -71,6 +78,16 @@ static void test_parse_false() {
 
 
 static void test_parse_invalid_value() {
+    /* invalid number */
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE, "+0");  /* cannot use '+' as the first char of number */
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE, "+1");
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE, ".123");/* at least one digit before '.' */
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE, "1.");  /* at least one digit after '.' */
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE, "INF");
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE, "inf");
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE, "NAN");
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE, "nan");
+    /* other invalid value */
     TEST_ERROR(JSON_PARSE_INVALID_VALUE, "nul");
     TEST_ERROR(JSON_PARSE_INVALID_VALUE, "?");
 }
@@ -87,6 +104,29 @@ static void test_parse_root_not_singular() {
 
     EXPECT_EQ_INT(JSON_PARSE_ROOT_NOT_SINGULAR, json_parse(&value, "null x"));
     EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
+}
+
+static void test_parse_number() {
+    TEST_NUMBER(0.0, "0");
+    TEST_NUMBER(0.0, "-0");
+    TEST_NUMBER(0.0, "-0.0");
+    TEST_NUMBER(1.0, "1");
+    TEST_NUMBER(-1.0, "-1");
+    TEST_NUMBER(1.5, "1.5");
+    TEST_NUMBER(-1.5, "-1.5");
+    TEST_NUMBER(3.1416, "3.1416");
+    TEST_NUMBER(1E10, "1E10");
+    TEST_NUMBER(1e10, "1e10");
+    TEST_NUMBER(1E+10, "1E+10");
+    TEST_NUMBER(1E-10, "1E-10");
+    TEST_NUMBER(1e-10, "1e-10");
+    TEST_NUMBER(-1E10, "-1E10");
+    TEST_NUMBER(-1e10, "-1e10");
+    TEST_NUMBER(-1E+10, "-1E+10");
+    TEST_NUMBER(-1E-10, "-1E-10");
+    TEST_NUMBER(1.234E+10, "1.234E+10");
+    TEST_NUMBER(1.234E-10, "1.234E-10");
+    TEST_NUMBER(0.0, "1e-10000"); /* underflow */
 }
 
 static void test_parse() {

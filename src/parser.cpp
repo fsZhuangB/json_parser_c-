@@ -68,7 +68,7 @@ static int json_parse_false(json_context* c, json_value* value)
 }
 
 /* this function parse the 3 value of json */
-/* value = null / false / true */
+/* value = null / false / true / number */
 static int json_parse_value(json_context* c, json_value* value)
 {
     switch (*c->json)
@@ -77,7 +77,7 @@ static int json_parse_value(json_context* c, json_value* value)
         case 't':  return json_parse_true(c, value);
         case 'f':  return json_parse_false(c, value);
         case '\0': return JSON_PARSE_EXPECT_VALUE;
-        default:   return JSON_PARSE_INVALID_VALUE;
+        default:   return json_parse_number(c, value);
     }
 }
 
@@ -95,3 +95,20 @@ double json_get_number(const json_value* value)
     return value->n;
 }
 
+/* this function parse the number of json 
+ * use c library function strtod()
+*/
+
+static int json_parse_number(json_context* c, json_value* value)
+{
+    char * end;
+    /* TODO validate number */
+    value->n = strtod(c->json, &end);
+
+    /* if json value == end */
+    if (c->json == end)
+        return JSON_PARSE_INVALID_VALUE;
+    c->json = end;
+    value->type =  json_type::JSON_NUMBER;
+    return JSON_PARSE_OK;
+}
