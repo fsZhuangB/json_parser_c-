@@ -7,8 +7,10 @@ static int main_ret = 0;
 static int test_count = 0;
 static int test_pass = 0;
 
-/* this macro get four parameters */
-/* if it fails, print stderr to screen */
+/* EXPECT_EQ_BASE
+ * this macro get four parameters
+ * if it fails, print stderr to screen 
+ */
 #define EXPECT_EQ_BASE(equality, expect, actual, format) \
     do                                                   \
     {                                                    \
@@ -22,20 +24,29 @@ static int test_pass = 0;
     } while(0)
 
 
-/* this macro get the EXPECT_EQ_BASE to show the result */
+/* EXPECT_EQ_INT
+ * this macro get the EXPECT_EQ_BASE to show the int result 
+ */
 #define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
+
+/* EXPECT_EQ_DOUBLE
+ * this macro get the EXPECT_EQ_BASE to show the double result 
+ */
+#define EXPECT_EQ_DOUBLE(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%.5f");
 
 /* TEST_ERROR 
  * simplify code to test error 
  */
-#define TEST_ERROR(error, json)                         \
-    do                                                  \
-    {                                                   \
-        json_value value;                               \
-        value.type = json_type::JSON_FALSE;             \
-        EXPECT_EQ_INT(error, json_parse(&value, json)); \
+#define TEST_ERROR(error, json)                                        \
+    do                                                                 \
+    {                                                                  \
+        json_value value;                                              \
+        value.type = json_type::JSON_FALSE;                            \
+        EXPECT_EQ_INT(error, json_parse(&value, json));                \
         EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));    \
     } while(0)
+
+#define TEST_NUMBER(expect, json) \
 
 static void test_parse_null() {
     json_value value;
