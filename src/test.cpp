@@ -10,19 +10,32 @@ static int test_pass = 0;
 /* this macro get four parameters */
 /* if it fails, print stderr to screen */
 #define EXPECT_EQ_BASE(equality, expect, actual, format) \
-    do {\
-        test_count++;\
-        if (equality)\
-            test_pass++;\
-        else {\
+    do                                                   \
+    {                                                    \
+        test_count++;                                    \
+        if (equality)                                    \
+            test_pass++;                                 \
+        else {                                           \
             fprintf(stderr, "%s:%d: expect: " format " actual: " format "\n", __FILE__, __LINE__, expect, actual);\
-            main_ret = 1;\
-        }\
+            main_ret = 1;                                \
+        }                                                \
     } while(0)
 
 
 /* this macro get the EXPECT_EQ_BASE to show the result */
 #define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
+
+/* TEST_ERROR 
+ * simplify code to test error 
+ */
+#define TEST_ERROR(error, json)                         \
+    do                                                  \
+    {                                                   \
+        json_value value;                               \
+        value.type = json_type::JSON_FALSE;             \
+        EXPECT_EQ_INT(error, json_parse(&value, json)); \
+        EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));    \
+    } while(0)
 
 static void test_parse_null() {
     json_value value;
@@ -47,27 +60,14 @@ static void test_parse_false() {
 
 
 static void test_parse_invalid_value() {
-    json_value value;
-    value.type = json_type::JSON_FALSE;
-    EXPECT_EQ_INT(JSON_PARSE_INVALID_VALUE, json_parse(&value, "nul"));
-    EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
-
-    value.type = json_type::JSON_FALSE;
-    EXPECT_EQ_INT(JSON_PARSE_INVALID_VALUE, json_parse(&value, "?"));
-    EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE, "nul");
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE, "?");
 }
 
 static void test_parse_expect_value() {
-    json_value value;
-    value.type = json_type::JSON_FALSE;
-
-    EXPECT_EQ_INT(JSON_PARSE_EXPECT_VALUE, json_parse(&value, ""));
     /* parse failed and return null */
-    EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
-
-    value.type = json_type::JSON_FALSE;
-    EXPECT_EQ_INT(JSON_PARSE_EXPECT_VALUE, json_parse(&value, " "));
-    EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
+    TEST_ERROR(JSON_PARSE_EXPECT_VALUE, "");
+    TEST_ERROR(JSON_PARSE_EXPECT_VALUE, " ");
 }
 
 static void test_parse_root_not_singular() {
