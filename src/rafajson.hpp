@@ -18,6 +18,7 @@ enum class json_type {
 // define json's data structure
 class json_value {
     public:
+    double n;
     json_type type;
 };
 
@@ -54,5 +55,8 @@ static int json_parse_true(json_context* c, json_value* value);
 
 /* false == "false" */
 static int json_parse_false(json_context* c, json_value* value);
+
+/* this function get the number of json */
+double json_get_number(const json_value* value);
 
 #endif

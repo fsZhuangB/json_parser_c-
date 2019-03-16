@@ -6,13 +6,11 @@
 
 #IncludeRegexTransform: 
 
+/Users/fszhuangb/Documents/rafa_json/src/parser.cpp
+rafajson.hpp
+/Users/fszhuangb/Documents/rafa_json/src/rafajson.hpp
+
 /Users/fszhuangb/Documents/rafa_json/src/rafajson.hpp
 assert.h
 -
-
-/Users/fszhuangb/Documents/rafa_json/src/test.cpp
-iostream
--
-rafajson.hpp
-/Users/fszhuangb/Documents/rafa_json/src/rafajson.hpp
 

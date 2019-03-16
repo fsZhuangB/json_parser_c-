@@ -88,3 +88,10 @@ json_type json_get_type(const json_value* value)
     return value->type;
 }
 
+/* this function get the number of json */
+double json_get_number(const json_value* value)
+{
+    assert(value != nullptr && value->type == json_type::JSON_NUMBER);
+    return value->n;
+}
+
