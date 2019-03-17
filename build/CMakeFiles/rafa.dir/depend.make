@@ -4,6 +4,7 @@
 CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.o: /Users/fszhuangb/Documents/rafa_json/src/parser.cpp
 CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.o: /Users/fszhuangb/Documents/rafa_json/src/rafajson.hpp
 
-CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.o: /Users/fszhuangb/Documents/rafa_json/src/rafajson.hpp
-CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.o: /Users/fszhuangb/Documents/rafa_json/src/test.cpp
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test/test.cpp.o: /Users/fszhuangb/Documents/rafa_json/src/rafajson.hpp
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test/test.cpp.o: /Users/fszhuangb/Documents/rafa_json/test/test.cpp
+CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test/test.cpp.o: /Users/fszhuangb/Documents/rafa_json/test/test.hpp
 

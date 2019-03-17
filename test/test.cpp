@@ -1,8 +1,8 @@
 /* test file */
 
 #include <iostream>
-#include "rafajson.hpp"
-
+#include "../src/rafajson.hpp"
+#include "test.hpp"
 static int main_ret = 0;
 static int test_count = 0;
 static int test_pass = 0;

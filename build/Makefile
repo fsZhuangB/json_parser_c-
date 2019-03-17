@@ -150,32 +150,32 @@ Users/fszhuangb/Documents/rafa_json/src/parser.cpp.s:
 	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/parser.cpp.s
 .PHONY : Users/fszhuangb/Documents/rafa_json/src/parser.cpp.s
 
-Users/fszhuangb/Documents/rafa_json/src/test.o: Users/fszhuangb/Documents/rafa_json/src/test.cpp.o
+Users/fszhuangb/Documents/rafa_json/test/test.o: Users/fszhuangb/Documents/rafa_json/test/test.cpp.o
 
-.PHONY : Users/fszhuangb/Documents/rafa_json/src/test.o
+.PHONY : Users/fszhuangb/Documents/rafa_json/test/test.o
 
 # target to build an object file
-Users/fszhuangb/Documents/rafa_json/src/test.cpp.o:
-	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.o
-.PHONY : Users/fszhuangb/Documents/rafa_json/src/test.cpp.o
+Users/fszhuangb/Documents/rafa_json/test/test.cpp.o:
+	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test/test.cpp.o
+.PHONY : Users/fszhuangb/Documents/rafa_json/test/test.cpp.o
 
-Users/fszhuangb/Documents/rafa_json/src/test.i: Users/fszhuangb/Documents/rafa_json/src/test.cpp.i
+Users/fszhuangb/Documents/rafa_json/test/test.i: Users/fszhuangb/Documents/rafa_json/test/test.cpp.i
 
-.PHONY : Users/fszhuangb/Documents/rafa_json/src/test.i
+.PHONY : Users/fszhuangb/Documents/rafa_json/test/test.i
 
 # target to preprocess a source file
-Users/fszhuangb/Documents/rafa_json/src/test.cpp.i:
-	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.i
-.PHONY : Users/fszhuangb/Documents/rafa_json/src/test.cpp.i
+Users/fszhuangb/Documents/rafa_json/test/test.cpp.i:
+	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test/test.cpp.i
+.PHONY : Users/fszhuangb/Documents/rafa_json/test/test.cpp.i
 
-Users/fszhuangb/Documents/rafa_json/src/test.s: Users/fszhuangb/Documents/rafa_json/src/test.cpp.s
+Users/fszhuangb/Documents/rafa_json/test/test.s: Users/fszhuangb/Documents/rafa_json/test/test.cpp.s
 
-.PHONY : Users/fszhuangb/Documents/rafa_json/src/test.s
+.PHONY : Users/fszhuangb/Documents/rafa_json/test/test.s
 
 # target to generate assembly for a file
-Users/fszhuangb/Documents/rafa_json/src/test.cpp.s:
-	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/src/test.cpp.s
-.PHONY : Users/fszhuangb/Documents/rafa_json/src/test.cpp.s
+Users/fszhuangb/Documents/rafa_json/test/test.cpp.s:
+	$(MAKE) -f CMakeFiles/Rafa.dir/build.make CMakeFiles/Rafa.dir/Users/fszhuangb/Documents/rafa_json/test/test.cpp.s
+.PHONY : Users/fszhuangb/Documents/rafa_json/test/test.cpp.s
 
 # Help Target
 help:
@@ -189,9 +189,9 @@ help:
 	@echo "... Users/fszhuangb/Documents/rafa_json/src/parser.o"
 	@echo "... Users/fszhuangb/Documents/rafa_json/src/parser.i"
 	@echo "... Users/fszhuangb/Documents/rafa_json/src/parser.s"
-	@echo "... Users/fszhuangb/Documents/rafa_json/src/test.o"
-	@echo "... Users/fszhuangb/Documents/rafa_json/src/test.i"
-	@echo "... Users/fszhuangb/Documents/rafa_json/src/test.s"
+	@echo "... Users/fszhuangb/Documents/rafa_json/test/test.o"
+	@echo "... Users/fszhuangb/Documents/rafa_json/test/test.i"
+	@echo "... Users/fszhuangb/Documents/rafa_json/test/test.s"
 .PHONY : help
 
 
