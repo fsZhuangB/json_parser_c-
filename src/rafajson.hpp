@@ -5,6 +5,8 @@
 
 // #include <string>
 #include <assert.h>
+#include <errno.h>
+#include <cmath>
 
 // enumerate six kind of json type
 enum class json_type { 

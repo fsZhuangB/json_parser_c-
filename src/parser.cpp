@@ -123,6 +123,8 @@ static int json_parse_number(json_context* c, json_value* value)
     }
 
     value->n = strtod(c->json, nullptr);
+    if (errno == ERANGE && (value->n == HUGE_VAL || value->n == -HUGE_VALL))
+        return JSON_PARSE_NUMBER_TOO_BIG;
     value->type =  json_type::JSON_NUMBER;
     c->json = p;
     return JSON_PARSE_OK;
