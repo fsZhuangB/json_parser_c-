@@ -1,5 +1,8 @@
 #ifndef RAFAJSON_H__
 #define RAFAJSON_H__
+#define ISDIGIT(ch) ((ch) >= '0' && (ch) <= '9')
+#define ISDIGIT1TO9(ch) ((ch) >= '1' && (ch) <= '9')
+
 // #include <string>
 #include <assert.h>
 
@@ -47,15 +50,6 @@ static void json_parse_whiteSpace(json_context* c);
 
 /* value == null / false / true */
 static int json_parse_value(json_context* c, json_value* value);
-
-/* null == "null" */
-// static int json_parse_null(json_context* c, json_value* value);
-
-// /* true == "true" */
-// static int json_parse_true(json_context* c, json_value* value);
-
-// /* false == "false" */
-// static int json_parse_false(json_context* c, json_value* value);
 
 /* this function get the number of json */
 double json_get_number(const json_value* value);
