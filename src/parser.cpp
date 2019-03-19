@@ -70,37 +70,16 @@ static void json_parse_whiteSpace(json_context* c)
 /*
  * this function is used to parse null / false / true
  */
-static int json_parse_iteral(json_context* c, json_value* value)
+static int json_parse_iteral(json_context* c, json_value* value, const char* literal, json_type type)
 {
-    switch (*c->json)
-    {
-        case 'n':
-            EXPECT(c, 'n');
-            if (c->json[0] != 'u' || c->json[1] != 'l' || c->json[2] != 'l')
-                return JSON_PARSE_INVALID_VALUE;
-            c->json += 3;  // move 3 characters 
-            value->type = json_type::JSON_NULL;
-            return JSON_PARSE_OK;
-            break;
-
-        case 't':
-            EXPECT(c, 't');
-            if (c->json[0] != 'r' || c->json[1] != 'u' || c->json[2] != 'e')
-                return JSON_PARSE_INVALID_VALUE;
-            c->json += 3;
-            value->type = json_type::JSON_TRUE;
-            return JSON_PARSE_OK;
-            break;
-
-        case 'f':
-            EXPECT(c, 'f');
-            if (c->json[0] != 'a' || c->json[1] != 'l' || c->json[2] != 's' || c->json[3] != 'e')
-                return JSON_PARSE_INVALID_VALUE;
-            c->json += 4;
-            value->type = json_type::JSON_FALSE;
-            return JSON_PARSE_OK;
-            break;
-    }
+    size_t i;
+    EXPECT(c, literal[0]);
+    for (i = 0; literal[i + 1];i++)
+        if (c->json[i] != literal[i+1])
+            return JSON_PARSE_INVALID_VALUE;
+    c->json += i;  // the pointer point to the end of string
+    value->type = type;
+    return JSON_PARSE_OK;
 }
 
 
@@ -110,9 +89,9 @@ static int json_parse_value(json_context* c, json_value* value)
 {
     switch (*c->json)
     {
-        case 'n':  return json_parse_iteral(c, value);
-        case 't':  return json_parse_iteral(c, value);
-        case 'f':  return json_parse_iteral(c, value);
+        case 'n':  return json_parse_iteral(c, value, "null", json_type::JSON_NULL);
+        case 't':  return json_parse_iteral(c, value, "true", json_type::JSON_TRUE);
+        case 'f':  return json_parse_iteral(c, value, "false", json_type::JSON_FALSE);
         case '\0': return JSON_PARSE_EXPECT_VALUE;
         default:   return json_parse_number(c, value);
     }

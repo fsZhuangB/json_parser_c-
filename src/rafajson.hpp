@@ -32,7 +32,8 @@ enum {
     JSON_PARSE_OK = 0,
     JSON_PARSE_EXPECT_VALUE,
     JSON_PARSE_INVALID_VALUE,
-    JSON_PARSE_ROOT_NOT_SINGULAR
+    JSON_PARSE_ROOT_NOT_SINGULAR,
+    JSON_PARSE_NUMBER_TOO_BIG
 };
 
 /* this function parse the json*/
@@ -68,6 +69,6 @@ static int json_parse_number(json_context* c, json_value* value);
 /*
  * this function is used to parse null / false / true
  */
-static int json_parse_iteral(json_context* c, json_value* value);
+static int json_parse_iteral(json_context* c, json_value* value, const char* literal, json_type type);
 
 #endif

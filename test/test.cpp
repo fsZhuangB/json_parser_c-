@@ -79,6 +79,7 @@ static void test_parse_false() {
 
 static void test_parse_invalid_value() {
     /* invalid number */
+    # if 0
     TEST_ERROR(JSON_PARSE_INVALID_VALUE, "+0");  /* cannot use '+' as the first char of number */
     TEST_ERROR(JSON_PARSE_INVALID_VALUE, "+1");
     TEST_ERROR(JSON_PARSE_INVALID_VALUE, ".123");/* at least one digit before '.' */
@@ -87,9 +88,11 @@ static void test_parse_invalid_value() {
     TEST_ERROR(JSON_PARSE_INVALID_VALUE, "inf");
     TEST_ERROR(JSON_PARSE_INVALID_VALUE, "NAN");
     TEST_ERROR(JSON_PARSE_INVALID_VALUE, "nan");
+    TEST_ERROR(JSON_PARSE_INVALID_VALUE);
     /* other invalid value */
     TEST_ERROR(JSON_PARSE_INVALID_VALUE, "nul");
     TEST_ERROR(JSON_PARSE_INVALID_VALUE, "?");
+    #endif
 }
 
 static void test_parse_expect_value() {
@@ -104,6 +107,12 @@ static void test_parse_root_not_singular() {
 
     EXPECT_EQ_INT(JSON_PARSE_ROOT_NOT_SINGULAR, json_parse(&value, "null x"));
     EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
+
+    #if 0
+    TEST_ERROR(JSON_PARSE_ROOT_NOT_SINGULAR, "0123");
+    TEST_ERROR(JSON_PARSE_ROOT_NOT_SINGULAR, "0x0");
+    TEST_ERROR(JSON_PARSE_ROOT_NOT_SINGULAR, "0x123");
+    #endif
 }
 
 static void test_parse_number() {
@@ -129,6 +138,14 @@ static void test_parse_number() {
     TEST_NUMBER(0.0, "1e-10000"); /* underflow */
 }
 
+static void test_parse_number_too_big()
+{
+    #if 0
+    TEST_ERROR(JSON_PARSE_NUMBER_TOO_BIG, "1e309");
+    TEST_ERROR(JSON_PARSE_NUMBER_TOO_BIG, "-1e309");
+    #endif
+}
+
 static void test_parse() {
     test_parse_null();
     test_parse_true();
@@ -136,6 +153,7 @@ static void test_parse() {
     test_parse_invalid_value();
     test_parse_expect_value();
     test_parse_root_not_singular();
+    test_parse_number_too_big();
     /* ... */
 }
 
