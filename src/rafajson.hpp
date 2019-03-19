@@ -48,20 +48,26 @@ static void json_parse_whiteSpace(json_context* c);
 static int json_parse_value(json_context* c, json_value* value);
 
 /* null == "null" */
-static int json_parse_null(json_context* c, json_value* value);
+// static int json_parse_null(json_context* c, json_value* value);
 
-/* true == "true" */
-static int json_parse_true(json_context* c, json_value* value);
+// /* true == "true" */
+// static int json_parse_true(json_context* c, json_value* value);
 
-/* false == "false" */
-static int json_parse_false(json_context* c, json_value* value);
+// /* false == "false" */
+// static int json_parse_false(json_context* c, json_value* value);
 
 /* this function get the number of json */
 double json_get_number(const json_value* value);
 
-/* this function parse the number of json 
+/* 
+ * this function parse the number of json 
  * use c library function strtod()
-*/
+ */
 static int json_parse_number(json_context* c, json_value* value);
+
+/*
+ * this function is used to parse null / false / true
+ */
+static int json_parse_iteral(json_context* c, json_value* value);
 
 #endif
