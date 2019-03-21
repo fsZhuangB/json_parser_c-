@@ -8,6 +8,7 @@
 #include <assert.h>
 #include <errno.h>
 #include <cmath>
+#include <string>
 
 // enumerate six kind of json type
 enum class json_type { 
@@ -24,14 +25,14 @@ enum class json_type {
 // define json's data structure
 class json_value {
     public:
-    std::variant<char *, size_t> s, len;
+    // std::variant<char *, size_t> s, len;
     double n;
     json_type type;
 };
 
 /* store the context of JSON text */
 struct json_context {
-    const char* json;
+    std::string json;
 };
 
 // the return value of result
@@ -44,7 +45,7 @@ enum {
 };
 
 /* this function parse the json*/
-int json_parse(json_value* value, const char* json);
+int json_parse(json_value* value, std::string json);
 
 /* this function get the type of result */
 json_type json_get_type(const json_value* value);
@@ -68,6 +69,6 @@ static int json_parse_number(json_context* c, json_value* value);
 /*
  * this function is used to parse null / false / true
  */
-static int json_parse_iteral(json_context* c, json_value* value, const char* literal, json_type type);
+static int json_parse_iteral(json_context* c, json_value* value, std::string literal, json_type type);
 
 #endif

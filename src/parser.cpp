@@ -3,7 +3,7 @@
 
 /* this function use the function below to parse JSON */
 /* ws value ws */
-int json_parse(json_value * value, const char* json)
+int json_parse(json_value * value, std::string json)
 {
     json_context c;
     assert(value != nullptr);
