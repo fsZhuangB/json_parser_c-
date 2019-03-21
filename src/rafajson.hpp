@@ -3,7 +3,8 @@
 #define ISDIGIT(ch) ((ch) >= '0' && (ch) <= '9')
 #define ISDIGIT1TO9(ch) ((ch) >= '1' && (ch) <= '9')
 
-// #include <string>
+#include <variant>
+#include <string>
 #include <assert.h>
 #include <errno.h>
 #include <cmath>
@@ -23,6 +24,7 @@ enum class json_type {
 // define json's data structure
 class json_value {
     public:
+    std::variant<char *, size_t> s, len;
     double n;
     json_type type;
 };
@@ -60,6 +62,7 @@ double json_get_number(const json_value* value);
  * this function parse the number of json 
  * use c library function strtod()
  */
+
 static int json_parse_number(json_context* c, json_value* value);
 
 /*
