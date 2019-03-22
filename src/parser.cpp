@@ -28,10 +28,15 @@ int json_parse(json_value * value, std::string json)
 /* ws == *(%x20 / %x09 / %x0A / %x0D) */
 static void json_parse_whiteSpace(json_context* c)
 {
-    const char* p = c->json;
+    // std::string p = c->json;
+    std::string::const_iterator p = (c->json).begin();
+    // std::string space = " ";
+    // std::string tab = "\t";
+    // std::string next = "\n";
+    // std::string ret = "\r";
     while (*p == ' ' || *p == '\t' || *p == '\n' || *p == '\r')
         p++;
-    c->json = p;
+    c->json = *p;
 }
 
 /*
