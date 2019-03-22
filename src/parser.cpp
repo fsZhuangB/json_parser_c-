@@ -90,7 +90,7 @@ double json_get_number(const json_value* value)
 static int json_parse_number(json_context* c, json_value* value)
 {
     char * end;
-    const char* p = c->json;
+    std::string::const_iterator p = (c->json).begin();
     /* parse '-' */
     if (*p == '-')
         p++;
