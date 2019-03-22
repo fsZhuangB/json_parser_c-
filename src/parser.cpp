@@ -132,10 +132,10 @@ static int json_parse_number(json_context* c, json_value* value)
         for (p++; ISDIGIT(*p); p++);
     }
 
-    value->n = strtod(c->json, nullptr);
+    value->n = strtod((c->json).c_str(), nullptr);
     if (errno == ERANGE && (value->n == HUGE_VAL || value->n == -HUGE_VALL))
         return JSON_PARSE_NUMBER_TOO_BIG;
     value->type =  json_type::JSON_NUMBER;
-    c->json = p;
+    c->json = *p;
     return JSON_PARSE_OK;
 }
