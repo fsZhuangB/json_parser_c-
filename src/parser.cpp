@@ -1,11 +1,14 @@
 #include "rafajson.hpp"
-#define EXPECT(c, ch) do { assert(*c->json == (ch)); c->json++; } while (0)
+
+#define EXPECT(c, ch) do { assert(*c == (ch)); c++; } while (0)
 
 /* this function use the function below to parse JSON */
 /* ws value ws */
 int json_parse(json_value * value, std::string json)
 {
     json_context c;
+    // iterator of json
+    std::string::const_iterator p = (c.json).begin();
     assert(value != nullptr);
     c.json = json;
     value->type = json_type::JSON_NULL;
@@ -15,7 +18,7 @@ int json_parse(json_value * value, std::string json)
     if (retValue == JSON_PARSE_OK)
         {
             json_parse_whiteSpace(&c);
-            if (*c.json != '\0')
+            if (*p != '\0')
             {
                 value->type = json_type::JSON_NULL;
                 retValue = JSON_PARSE_ROOT_NOT_SINGULAR;
@@ -42,10 +45,11 @@ static void json_parse_whiteSpace(json_context* c)
 /*
  * this function is used to parse null / false / true
  */
-static int json_parse_iteral(json_context* c, json_value* value, const char* literal, json_type type)
+static int json_parse_iteral(json_context* c, json_value* value, std::string literal, json_type type)
 {
     size_t i;
-    EXPECT(c, literal[0]);
+    std::string::const_iterator beg = (c->json).begin();
+    EXPECT(beg, literal[0]);
     for (i = 0; literal[i + 1];i++)
         if (c->json[i] != literal[i+1])
             return JSON_PARSE_INVALID_VALUE;
@@ -59,7 +63,8 @@ static int json_parse_iteral(json_context* c, json_value* value, const char* lit
 /* value = null / false / true / number */
 static int json_parse_value(json_context* c, json_value* value)
 {
-    switch (*c->json)
+    std::string::const_iterator beg = (c->json).begin();
+    switch (*beg)
     {
         case 'n':  return json_parse_iteral(c, value, "null", json_type::JSON_NULL);
         case 't':  return json_parse_iteral(c, value, "true", json_type::JSON_TRUE);
