@@ -9,6 +9,7 @@ int json_parse(json_value * value, std::string json)
     json_context c;
     // iterator of json
     std::string::const_iterator p = (c.json).begin();
+    std::string::const_iterator p_end = (c.json).end();
     assert(value != nullptr);
     c.json = json;
     value->type = json_type::JSON_NULL;
@@ -18,7 +19,7 @@ int json_parse(json_value * value, std::string json)
     if (retValue == JSON_PARSE_OK)
         {
             json_parse_whiteSpace(&c);
-            if (*p != '\0')
+            if (p != p_end)
             {
                 value->type = json_type::JSON_NULL;
                 retValue = JSON_PARSE_ROOT_NOT_SINGULAR;
