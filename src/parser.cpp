@@ -7,11 +7,9 @@
 int json_parse(json_value * value, std::string json)
 {
     json_context c;
-    // iterator of json
-    std::string::const_iterator p = (c.json).begin();
-    std::string::const_iterator p_end = (c.json).end();
     assert(value != nullptr);
     c.json = json;
+
     value->type = json_type::JSON_NULL;
     json_parse_whiteSpace(&c);
 
@@ -19,6 +17,9 @@ int json_parse(json_value * value, std::string json)
     if (retValue == JSON_PARSE_OK)
         {
             json_parse_whiteSpace(&c);
+                // iterator of string
+            std::string::const_iterator p = (c.json).begin();
+            std::string::const_iterator p_end = (c.json).end();
             if (p != p_end)
             {
                 value->type = json_type::JSON_NULL;
@@ -50,11 +51,16 @@ static int json_parse_iteral(json_context* c, json_value* value, std::string lit
 {
     size_t i;
     std::string::const_iterator beg = (c->json).begin();
+    std::string::const_iterator end = (c->json).end();
+    auto literalIterator = literal.begin();
     EXPECT(beg, literal[0]);
-    for (i = 0; literal[i + 1];i++)
-        if (c->json[i] != literal[i+1])
-            return JSON_PARSE_INVALID_VALUE;
-    c->json += i;  // the pointer point to the end of string
+    for (; beg != end; beg++)
+        {
+            if (*beg != *literalIterator++)
+                return JSON_PARSE_INVALID_VALUE;
+        }
+    beg = end;
+    // c->json += i;  // the pointer point to the end of string
     value->type = type;
     return JSON_PARSE_OK;
 }

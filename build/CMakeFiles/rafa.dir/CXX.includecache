@@ -6,11 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/fszhuangb/Documents/rafa_json/src/parser.cpp
-rafajson.hpp
 /Users/fszhuangb/Documents/rafa_json/src/rafajson.hpp
-
-/Users/fszhuangb/Documents/rafa_json/src/rafajson.hpp
+iostream
+-
 variant
 -
 string
@@ -23,4 +21,14 @@ cmath
 -
 string
 -
+
+/Users/fszhuangb/Documents/rafa_json/test/test.cpp
+iostream
+-
+../src/rafajson.hpp
+/Users/fszhuangb/Documents/rafa_json/src/rafajson.hpp
+test.hpp
+/Users/fszhuangb/Documents/rafa_json/test/test.hpp
+
+/Users/fszhuangb/Documents/rafa_json/test/test.hpp
 
