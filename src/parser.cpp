@@ -35,13 +35,14 @@ static void json_parse_whiteSpace(json_context* c)
 {
     // std::string p = c->json;
     std::string::const_iterator p = (c->json).begin();
+    std::string::const_iterator e = (c->json).end();
     // std::string space = " ";
     // std::string tab = "\t";
     // std::string next = "\n";
     // std::string ret = "\r";
     while (*p == ' ' || *p == '\t' || *p == '\n' || *p == '\r')
         p++;
-    c->json = *p;
+    c->json = (c->json).assign(p, e);
 }
 
 /*
