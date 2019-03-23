@@ -53,14 +53,18 @@ static int json_parse_iteral(json_context* c, json_value* value, std::string lit
     size_t i;
     std::string::const_iterator beg = (c->json).begin();
     std::string::const_iterator end = (c->json).end();
-    auto literalIterator = literal.begin();
+    std::string::const_iterator literalIterator = literal.begin();
     EXPECT(beg, literal[0]);
-    for (; beg != end; beg++)
-        {
-            if (*beg != *literalIterator++)
-                return JSON_PARSE_INVALID_VALUE;
-        }
-    beg = end;
+    // size_t i = 0;
+    for (i = 0; literal[i + 1]; i++)
+        if (*beg++ != literal[i + 1])
+            return JSON_PARSE_INVALID_VALUE;
+
+
+    // for (; beg != end; beg++)
+    //         if (*beg != *++literalIterator)
+    //                 return JSON_PARSE_INVALID_VALUE;
+    c->json = (c->json).assign(beg, end);
     // c->json += i;  // the pointer point to the end of string
     value->type = type;
     return JSON_PARSE_OK;
@@ -104,6 +108,7 @@ static int json_parse_number(json_context* c, json_value* value)
 {
     char * end;
     std::string::const_iterator p = (c->json).begin();
+    std::string::const_iterator e = (c->json).end();
     /* parse '-' */
     if (*p == '-')
         p++;
@@ -144,6 +149,6 @@ static int json_parse_number(json_context* c, json_value* value)
     if (errno == ERANGE && (value->n == HUGE_VAL || value->n == -HUGE_VALL))
         return JSON_PARSE_NUMBER_TOO_BIG;
     value->type =  json_type::JSON_NUMBER;
-    c->json = *p;
+    c->json = (c->json).assign(p, e);
     return JSON_PARSE_OK;
 }

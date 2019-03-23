@@ -104,8 +104,7 @@ static void test_parse_root_not_singular() {
     json_value value;
     value.type = json_type::JSON_FALSE;
 
-    EXPECT_EQ_INT(JSON_PARSE_ROOT_NOT_SINGULAR, json_parse(&value, "null x"));
-    EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));
+    TEST_ERROR(JSON_PARSE_ROOT_NOT_SINGULAR, "null x");
 
     #if 1
     TEST_ERROR(JSON_PARSE_ROOT_NOT_SINGULAR, "0123");
