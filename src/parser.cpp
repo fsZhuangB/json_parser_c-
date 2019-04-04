@@ -1,6 +1,5 @@
 #include "rafajson.hpp"
 
-#define EXPECT(c, ch) do { assert(*c == (ch)); c++; } while (0)
 
 /* this function use the function below to parse JSON */
 /* ws value ws */
@@ -151,4 +150,23 @@ static int json_parse_number(json_context* c, json_value* value)
     value->type =  json_type::JSON_NUMBER;
     c->json = (c->json).assign(p, e);
     return JSON_PARSE_OK;
+}
+
+void json_set_string(json_value* value, const char* s, size_t len)
+{
+    assert(value != nullptr && (s != nullptr || len == 0));
+    json_free(value);
+    value->s = new char;
+    memcpy(std::get<char*>(value->s), s, len);  // use std::get<T> to get value from variant
+    std::get<char*>(value->s)[len] = '\0';
+    value->len = len;
+    value->type = json_type::JSON_STRING;
+}
+
+void json_free(json_value* value)
+{
+    assert(value != nullptr);
+    if (value->type == json_type::JSON_STRING)
+        delete(std::get<char*>(value->s));
+    value->type = json_type::JSON_NULL;
 }
