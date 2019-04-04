@@ -11,4 +11,4 @@ set(SOURCES ../src/parser.cpp ../src/rafajson.hpp ../test/test.cpp ../test/test.
 add_executable(Rafa ${SOURCES})
 
 # 使用c++11标准
-add_definitions(-std=c++11)
+add_definitions(-std=c++17)

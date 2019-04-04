@@ -14,6 +14,7 @@
 #include <errno.h>
 #include <cmath>
 #include <string>
+#include <variant>
 
 // enumerate six kind of json type
 enum class json_type { 
@@ -38,6 +39,8 @@ class json_value {
 /* store the context of JSON text */
 struct json_context {
     std::string json;
+    char* stack;
+    size_t size, top;
 };
 
 // the return value of result
@@ -95,6 +98,6 @@ void json_set_number(json_value* value, double n);
 const char* json_get_string(const json_value* value);
 size_t json_get_string_length(const json_value* value);
 void json_set_string(json_value* value, const char* s, size_t len);
-// test
+
 
 #endif
