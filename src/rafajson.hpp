@@ -54,7 +54,8 @@ enum {
     JSON_PARSE_EXPECT_VALUE,
     JSON_PARSE_INVALID_VALUE,
     JSON_PARSE_ROOT_NOT_SINGULAR,
-    JSON_PARSE_NUMBER_TOO_BIG
+    JSON_PARSE_NUMBER_TOO_BIG,
+    JSON_PARSE_MISS_QUOTATION_MARK
 };
 
 /* this function parse the json*/
@@ -107,6 +108,8 @@ void json_set_string(json_value* value, const char* s, size_t len);
 static void* json_context_push(json_context* c, size_t size);
 
 static void* json_context_pop(json_context* c, size_t size);
+
+static int json_parse_string(json_context* c, json_value* value);
 
 
 #endif

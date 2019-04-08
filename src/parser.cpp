@@ -198,3 +198,32 @@ static void* json_context_pop(json_context* c, size_t size)
     assert(c->top >= size);
     return c->stack + (c->top -= size);
 }
+
+static int json_parse_string(json_context* c, json_value* value)
+{
+    size_t head = c->top, len;
+    const char* p;
+    std::string::const_iterator p = (c->json).begin();
+    std::string::const_iterator e = (c->json).end();
+    EXPECT(p, '\"');
+    c->json = (c->json).assign(p, e);
+    for (;;)
+    {
+        char ch = *p++;
+        switch (ch) 
+        {
+            case '\"':
+                len = c->top - head;
+                json_set_string(value, (const char*)json_context_pop(c, len), len);
+                (c->json) = (c->json).assign(p, e);
+                return JSON_PARSE_OK;
+            case '\0':
+                c->top = head;
+                return JSON_PARSE_MISS_QUOTATION_MARK;
+            default:
+                PUTC(c, ch);
+
+        }
+        
+    }
+}
