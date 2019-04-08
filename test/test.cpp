@@ -55,6 +55,9 @@ static int test_pass = 0;
         EXPECT_EQ_DOUBLE(expect, json_get_number(&value));             \
     } while(0)
 
+#define EXPECT_EQ_STRING(expect, actual, alength) \
+        EXPECT_EQ_BASE(sizeof(expect) - 1 == alength && memcmp(expect, actual, alength) == 0, expect, actual, "%s")
+
 static void test_parse_null() {
     json_value value;
     value.type = json_type::JSON_NULL;
@@ -151,6 +154,17 @@ static void test_parse_number_too_big()
     TEST_ERROR(JSON_PARSE_NUMBER_TOO_BIG, "1e309");
     TEST_ERROR(JSON_PARSE_NUMBER_TOO_BIG, "-1e309");
     #endif
+}
+
+static void test_acess_string() 
+{
+    json_value* value;
+    JSON_INIT(value);
+    json_set_string(value, "", 0);
+    EXPECT_EQ_STRING("", json_get_string(value), json_get_string_length(value));
+    json_set_string(value, "Hello", 5);
+    EXPECT_EQ_STRING("Hello", json_get_string(value), json_get_string_length(value));
+    json_free(value);
 }
 
 static void test_parse() {
