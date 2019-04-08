@@ -6,8 +6,12 @@
 int json_parse(json_value * value, std::string json)
 {
     json_context c;
+    // int ret;
     assert(value != nullptr);
     c.json = json;
+    c.stack = nullptr;
+    c.size = c.top = 0;
+    JSON_INIT(value);
 
     value->type = json_type::JSON_NULL;
     json_parse_whiteSpace(&c);
@@ -25,6 +29,8 @@ int json_parse(json_value * value, std::string json)
                 retValue = JSON_PARSE_ROOT_NOT_SINGULAR;
             }
         }
+    assert(c.top == 0);
+    free(c.stack);
     return retValue;
 }
 
@@ -169,4 +175,27 @@ void json_free(json_value* value)
     if (value->type == json_type::JSON_STRING)
         delete(std::get<char*>(value->s));
     value->type = json_type::JSON_NULL;
+}
+
+static void* json_context_push(json_context* c, size_t size)
+{
+    void* ret;
+    assert(size > 0);
+    if (c->top + size >= c->size)
+    {
+        if (c->size == 0)
+            c->size = JSON_PARSE_STACK_INIT_SIZE;
+        while (c->top + size >= c->size)
+            c->size += c->size >> 1;  /* c->size * 1.5 */
+        c->stack = (char*)realloc(c->stack, c->size);
+    }
+    ret = c->stack + c->top;
+    c->top += size;
+    return ret;
+}
+
+static void* json_context_pop(json_context* c, size_t size)
+{
+    assert(c->top >= size);
+    return c->stack + (c->top -= size);
 }
