@@ -5,6 +5,11 @@
 #define EXPECT(c, ch) do { assert(*c == (ch)); c++; } while (0)
 #define JSON_INIT(value) do {(value->type) = json_type::JSON_NULL;} while(0)
 #define JSON_SET_NULL(value) json_free(value)
+#define PUTC(c, ch) do { *(char*) json_context_push(c, sizeof(char)) = (ch); } while(0)
+#ifndef JSON_PARSE_STACK_INIT_SIZE
+#define JSON_PARSE_STACK_INIT_SIZE 256
+#endif
+
 
 
 #include <iostream>
@@ -99,5 +104,12 @@ const char* json_get_string(const json_value* value);
 size_t json_get_string_length(const json_value* value);
 void json_set_string(json_value* value, const char* s, size_t len);
 
+<<<<<<< HEAD
+=======
+static void* json_context_push(json_context* c, size_t size);
+
+static void* json_context_pop(json_context* c, size_t size);
+
+>>>>>>> devTest
 
 #endif
