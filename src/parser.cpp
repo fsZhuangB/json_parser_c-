@@ -202,7 +202,7 @@ static void* json_context_pop(json_context* c, size_t size)
 static int json_parse_string(json_context* c, json_value* value)
 {
     size_t head = c->top, len;
-    const char* p;
+    // const char* p;
     std::string::const_iterator p = (c->json).begin();
     std::string::const_iterator e = (c->json).end();
     EXPECT(p, '\"');
