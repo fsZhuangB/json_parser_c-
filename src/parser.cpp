@@ -227,3 +227,15 @@ static int json_parse_string(json_context* c, json_value* value)
         
     }
 }
+
+const char* json_get_string(const json_value* value)
+{
+    assert(value != nullptr && value->type == json_type::JSON_STRING);
+    return std::get<char*>(value->s);
+}
+
+size_t json_get_string_length(const json_value* value)
+{
+    assert(value != nullptr && value->type == json_type::JSON_STRING);
+    return std::get<size_t>(value->len);
+}
