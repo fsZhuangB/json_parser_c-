@@ -104,12 +104,9 @@ const char* json_get_string(const json_value* value);
 size_t json_get_string_length(const json_value* value);
 void json_set_string(json_value* value, const char* s, size_t len);
 
-<<<<<<< HEAD
-=======
 static void* json_context_push(json_context* c, size_t size);
 
 static void* json_context_pop(json_context* c, size_t size);
 
->>>>>>> devTest
 
 #endif
