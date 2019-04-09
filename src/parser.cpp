@@ -164,7 +164,7 @@ void json_set_string(json_value* value, const char* s, size_t len)
 {
     assert(value != nullptr && (s != nullptr || len == 0));
     json_free(value);
-    value->s = (char *)malloc(len);
+    value->s = (char *)malloc(len + 1);
     memcpy(std::get<char*>(value->s), s, len);  // use std::get<T> to get value from variant
     std::get<char*>(value->s)[len] = '\0';
     value->len = len;

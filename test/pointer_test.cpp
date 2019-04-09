@@ -10,12 +10,16 @@ class json_content {
 static void json_parse_whiteSpace(json_content* c);
 int main()
 {
-    string json = " null";
-    json_content jc;
-    jc.json_value = json;
+    // string json = " null";
+    // json_content jc;
+    // jc.json_value = json;
 
-    json_parse_whiteSpace(&jc);
-    cout << jc.json_value << endl;
+    // json_parse_whiteSpace(&jc);
+    // cout << jc.json_value << endl;
+    string json = "good";
+    auto b = json.begin();
+    cout << *b << endl;
+    
 
     return 0;
 }
