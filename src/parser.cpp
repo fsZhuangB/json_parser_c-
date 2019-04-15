@@ -65,7 +65,7 @@ static int json_parse_iteral(json_context* c, json_value* value, std::string lit
         if (start[i] != literal[i + 1])
             return JSON_PARSE_INVALID_VALUE;
 
-    c->json += i;
+    c->json = (c->json).substr(i+1);
     value->type = type;
     return JSON_PARSE_OK;
 }
