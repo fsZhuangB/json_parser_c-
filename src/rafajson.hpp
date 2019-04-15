@@ -6,6 +6,7 @@
 #include <cmath>
 #include <string>
 #include <variant>
+#include <stack>
 
 #ifndef RAFAJSON_H__
 #define RAFAJSON_H__
@@ -35,7 +36,7 @@ enum class json_type {
 // define json's data structure
 class json_value {
     public:
-    std::variant<char *, size_t> s, len;
+    std::variant<std::string, size_t> s, len;
     double n;
     json_type type;
 };
@@ -88,7 +89,7 @@ static int json_parse_iteral(json_context* c, json_value* value, std::string lit
 /*
  * this function set a value as string
  */
-void json_set_string(json_value* value, const char* s, size_t len);
+void json_set_string(json_value* value, std::string s, size_t len);
 
 /*
  * this function free the memory of the value
@@ -103,7 +104,7 @@ void json_set_number(json_value* value, double n);
 
 const char* json_get_string(const json_value* value);
 size_t json_get_string_length(const json_value* value);
-void json_set_string(json_value* value, const char* s, size_t len);
+// void json_set_string(json_value* value, const char* s, size_t len);
 
 static void* json_context_push(json_context* c, size_t size);
 

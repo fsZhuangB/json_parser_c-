@@ -16,11 +16,13 @@ int main()
 
     // json_parse_whiteSpace(&jc);
     // cout << jc.json_value << endl;
-    string json = "good";
-    auto b = json.begin();
-    cout << *b << endl;
-    
-
+    // string json = "good";
+    // auto b = json.begin();
+    // cout << *b << endl;
+    string ss = "good";
+    cout << ss << endl;
+    ss.clear();
+    cout << ss << endl;
     return 0;
 }
 
