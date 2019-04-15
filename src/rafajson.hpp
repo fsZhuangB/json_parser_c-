@@ -1,3 +1,12 @@
+#include <iostream>
+#include <variant>
+#include <string>
+#include <assert.h>
+#include <errno.h>
+#include <cmath>
+#include <string>
+#include <variant>
+
 #ifndef RAFAJSON_H__
 #define RAFAJSON_H__
 #define ISDIGIT(ch) ((ch) >= '0' && (ch) <= '9')
@@ -10,16 +19,6 @@
 #define JSON_PARSE_STACK_INIT_SIZE 256
 #endif
 
-
-
-#include <iostream>
-#include <variant>
-#include <string>
-#include <assert.h>
-#include <errno.h>
-#include <cmath>
-#include <string>
-#include <variant>
 
 // enumerate six kind of json type
 enum class json_type { 
@@ -42,7 +41,8 @@ class json_value {
 };
 
 /* store the context of JSON text */
-struct json_context {
+class json_context {
+    public:
     std::string json;
     char* stack;
     size_t size, top;

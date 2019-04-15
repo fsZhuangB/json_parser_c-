@@ -20,9 +20,8 @@ int json_parse(json_value * value, std::string json)
         {
             json_parse_whiteSpace(&c);
                 // iterator of string
-            std::string::const_iterator p = (c.json).begin();
-            std::string::const_iterator p_end = (c.json).end();
-            if (p != p_end)
+         const char* start = (c.json).c_str();
+         if (*start != '\0')
             {
                 value->type = json_type::JSON_NULL;
                 retValue = JSON_PARSE_ROOT_NOT_SINGULAR;
@@ -38,15 +37,16 @@ int json_parse(json_value * value, std::string json)
 static void json_parse_whiteSpace(json_context* c)
 {
     // std::string p = c->json;
-    std::string::const_iterator p = (c->json).begin();
-    std::string::const_iterator e = (c->json).end();
+    // std::string::const_iterator p = (c->json).begin();
+    // std::string::const_iterator e = (c->json).end();
     // std::string space = " ";
     // std::string tab = "\t";
     // std::string next = "\n";
     // std::string ret = "\r";
+    const char* p = (c->json).c_str();
     while (*p == ' ' || *p == '\t' || *p == '\n' || *p == '\r')
         p++;
-    c->json = (c->json).assign(p, e);
+    c->json = p;
 }
 
 /*
@@ -55,21 +55,17 @@ static void json_parse_whiteSpace(json_context* c)
 static int json_parse_iteral(json_context* c, json_value* value, std::string literal, json_type type)
 {
     size_t i;
-    std::string::const_iterator beg = (c->json).begin();
-    std::string::const_iterator end = (c->json).end();
-    std::string::const_iterator literalIterator = literal.begin();
-    EXPECT(beg, literal[0]);
+    // std::string::const_iterator beg = (c->json).begin();
+    // std::string::const_iterator end = (c->json).end();
+    // std::string::const_iterator literalIterator = literal.begin();
+    const char* start = (c->json).c_str();
+    EXPECT(start, literal[0]);
     // size_t i = 0;
     for (i = 0; literal[i + 1]; i++)
-        if (*beg++ != literal[i + 1])
+        if (start[i] != literal[i + 1])
             return JSON_PARSE_INVALID_VALUE;
 
-
-    // for (; beg != end; beg++)
-    //         if (*beg != *++literalIterator)
-    //                 return JSON_PARSE_INVALID_VALUE;
-    c->json = (c->json).assign(beg, end);
-    // c->json += i;  // the pointer point to the end of string
+    c->json += i;
     value->type = type;
     return JSON_PARSE_OK;
 }
