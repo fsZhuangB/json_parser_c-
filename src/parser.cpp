@@ -156,23 +156,22 @@ static int json_parse_number(json_context* c, json_value* value)
 /**
  * this function set a value as string
 **/
-void json_set_string(json_value* value, const char* s, size_t len)
+void json_set_string(json_value* value, std::string s, size_t len)
 {
-    assert(value != nullptr && (s != nullptr || len == 0));
+    const char * start = s.c_str();
+    assert(value != nullptr && (start != nullptr || len == 0));
     json_free(value);
-    value->s = (char *)malloc(len + 1);
-    memcpy(std::get<char*>(value->s), s, len);  // use std::get<T> to get value from variant
-    std::get<char*>(value->s)[len] = '\0';
+    value->s = s;
     value->len = len;
     value->type = json_type::JSON_STRING;
 }
 
-
+// clear the string
 void json_free(json_value* value)
 {
     assert(value != nullptr);
     if (value->type == json_type::JSON_STRING)
-        free(std::get<char*>(value->s));
+        (std::get<std::string>(value->s)).clear();
     value->type = json_type::JSON_NULL;
 }
 
@@ -229,7 +228,7 @@ static int json_parse_string(json_context* c, json_value* value)
 const char* json_get_string(const json_value* value)
 {
     assert(value != nullptr && value->type == json_type::JSON_STRING);
-    return std::get<char*>(value->s);
+    return (std::get<std::string>(value->s)).c_str();
 }
 
 size_t json_get_string_length(const json_value* value)
