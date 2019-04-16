@@ -75,6 +75,7 @@ static int json_parse_value(json_context* c, json_value* value)
         case 't':  return json_parse_iteral(c, value, "true", json_type::JSON_TRUE);
         case 'f':  return json_parse_iteral(c, value, "false", json_type::JSON_FALSE);
         case '\0': return JSON_PARSE_EXPECT_VALUE;
+        case '"':  return json_parse_string(c, value);
         default:   return json_parse_number(c, value);
     }
 }
