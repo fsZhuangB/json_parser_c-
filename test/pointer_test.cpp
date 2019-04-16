@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <variant>
 using namespace std;
 
 class json_content {
@@ -7,9 +8,16 @@ class json_content {
     string json_value;
 };
 
+class json_value
+{
+    std::variant<std::string, size_t> s, len;
+};
+
 static void json_parse_whiteSpace(json_content* c);
 int main()
 {
+    json_value value;
+    value
     // string json = " null";
     // json_content jc;
     // jc.json_value = json;

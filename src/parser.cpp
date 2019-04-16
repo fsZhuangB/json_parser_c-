@@ -4,6 +4,7 @@
 /* ws value ws */
 int json_parse(json_value * value, std::string json)
 {
+    std::cout << "Run the first line of json_parse()..." << std::endl;
     json_context c;
     // int ret;
     assert(value != nullptr);
@@ -11,7 +12,6 @@ int json_parse(json_value * value, std::string json)
     c.stack = nullptr;
     c.size = c.top = 0;
     JSON_INIT(value);
-
     value->type = json_type::JSON_NULL;
     json_parse_whiteSpace(&c);
 
@@ -29,6 +29,7 @@ int json_parse(json_value * value, std::string json)
         }
     assert(c.top == 0);
     free(c.stack);
+std::cout << "Run the end line of json_parse()..." << std::endl;
     return retValue;
 }
 
@@ -68,6 +69,7 @@ static int json_parse_iteral(json_context* c, json_value* value, std::string lit
 /* value = null / false / true / number */
 static int json_parse_value(json_context* c, json_value* value)
 {
+    std::cout << "Run the json_parse_value()...\n";
     std::string::const_iterator beg = (c->json).begin();
     switch (*beg)
     {
@@ -194,10 +196,14 @@ static void* json_context_pop(json_context* c, size_t size)
 
 static int json_parse_string(json_context* c, json_value* value)
 {
+    std::cout << "Run the first line of json_parse_string()...\n";
     size_t head = c->top, len;
     // const char* p = (c->json).c_str();
     const char * start = (c->json).c_str();
+    std::cout << *start << std::endl;
     EXPECT(start, '\"');
+    start = start + 1;
+    std::cout << *start << std::endl;
     // c->json
     for (;;)
     {
