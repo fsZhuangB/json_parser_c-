@@ -130,8 +130,8 @@ static void test_parse_root_not_singular() {
 static void test_parse_string() 
 {
     std::cout << "Run the test_parse_string()\n";
-    //TEST_STRING("", "\"\"");
-    TEST_STRING("Hello", "\"Hello\"");
+    TEST_STRING("", "\"\"");
+    // TEST_STRING("Hello", "\"Hello\"");
 #if 0
     TEST_STRING("Hello\nWorld", "\"Hello\\nWorld\"");
     TEST_STRING("\" \\ / \b \f \n \r \t", "\"\\\" \\\\ \\/ \\b \\f \\n \\r \\t\"");
@@ -200,7 +200,7 @@ static void test_parse() {
     // test_parse_root_not_singular();
     // test_parse_number_too_big();
     test_parse_string();
-    test_acess_string();
+    // test_acess_string();
     /* ... */
 }
 
