@@ -206,7 +206,7 @@ static int json_parse_string(json_context* c, json_value* value)
     const char * start = (c->json).c_str();
     std::cout << *start << std::endl;
     EXPECT(start, '\"');
-    //start = start + 1;
+    // start = start + 1;
     std::cout << *start << std::endl;
     // c->json
     for (;;)
