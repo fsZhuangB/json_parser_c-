@@ -45,7 +45,6 @@ class json_value {
 class json_context {
     public:
     std::string json;
-    
     char* stack;
     size_t size, top;
 };

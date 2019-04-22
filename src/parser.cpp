@@ -159,6 +159,7 @@ void json_set_string(json_value* value, std::string s, size_t len)
     assert(value != nullptr && (start != nullptr || len == 0));
     json_free(value);
     value->s = s;
+    // memcpy(value->s, s, len);
     value->len = len;
     value->type = json_type::JSON_STRING;
 }
@@ -190,16 +191,16 @@ static void* json_context_push(json_context* c, size_t size)
     return ret;
 }
 
-static void* json_context_pop(json_context* c, size_t size)
+static void* json_context_pop(std::stack<char *> s, size_t size)
 {
-    //std::cout << "Running json_context_pop()\n";
-    assert(c->top >= size);
-    //std::cout << "This line...\n";
-    return c->stack + (c->top -= size);
+    std::cout << "Running json_context_pop()\n";
+    assert(s.size > 0);
+    std::cout << "This line...\n";
+    return s.pop();
 }
 
 static int json_parse_string(json_context* c, json_value* value)
-{
+{ 
     std::cout << "Run the first line of json_parse_string()...\n";
     size_t head = c->top, len;
     // const char* p = (c->json).c_str();
@@ -218,7 +219,7 @@ static int json_parse_string(json_context* c, json_value* value)
                 std::cout << "Run the case \"\n";
                 len = c->top - head;
                 std::cout << "Maybe the fault is not c->top - head\n";
-                json_set_string(value, nullptr, len);
+                json_set_string(value, (const char*)json_context_pop(c, len), len);
                 std::cout << "Maybe the fault is json_set_string()\n";
                 c->json = start;
                 return JSON_PARSE_OK;
