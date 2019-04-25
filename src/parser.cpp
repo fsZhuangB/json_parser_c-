@@ -2,7 +2,7 @@
 
 /* this function use the function below to parse JSON */
 /* ws value ws */
-int json_parse(json_value * value, std::string json)
+int json_parse(json_value * value, const char* json)
 {
     std::cout << "Run the first line of json_parse()..." << std::endl;
     json_context c;
@@ -152,14 +152,13 @@ static int json_parse_number(json_context* c, json_value* value)
 /**
  * this function set a value as string
 **/
-void json_set_string(json_value* value, std::string s, size_t len)
+void json_set_string(json_value* value, const char* s, size_t len)
 {
-    std::cout << "Run the json_set_string()\n";
-    const char* start = s.c_str();
-    assert(value != nullptr && (start != nullptr || len == 0));
+    assert(value != nullptr && (s != nullptr || len == 0));
     json_free(value);
-    value->s = s;
-    // memcpy(value->s, s, len);
+    value->s = (char*)malloc(len + 1);
+    memcpy(std::get<char *>(value->s), s, len);
+    (std::get<char *>(value->s))[len] = '\0';
     value->len = len;
     value->type = json_type::JSON_STRING;
 }
@@ -169,7 +168,7 @@ void json_free(json_value* value)
 {
     assert(value != nullptr);
     if (value->type == json_type::JSON_STRING)
-        (std::get<std::string>(value->s)).clear();
+        free(std::get<char *>(value->s));
     value->type = json_type::JSON_NULL;
 }
 
@@ -191,12 +190,12 @@ static void* json_context_push(json_context* c, size_t size)
     return ret;
 }
 
-static void* json_context_pop(std::stack<char *> s, size_t size)
+static void* json_context_pop(json_context *c, size_t size)
 {
     std::cout << "Running json_context_pop()\n";
-    assert(s.size > 0);
+    assert(c->top >= size);
     std::cout << "This line...\n";
-    return s.pop();
+    return c->stack + (c->top -= size); 
 }
 
 static int json_parse_string(json_context* c, json_value* value)
@@ -216,11 +215,9 @@ static int json_parse_string(json_context* c, json_value* value)
         switch (ch) 
         {
             case '\"':
-                std::cout << "Run the case \"\n";
-                len = c->top - head;
-                std::cout << "Maybe the fault is not c->top - head\n";
+                len = c->top - head; 
                 json_set_string(value, (const char*)json_context_pop(c, len), len);
-                std::cout << "Maybe the fault is json_set_string()\n";
+                
                 c->json = start;
                 return JSON_PARSE_OK;
             case '\0':
@@ -235,7 +232,7 @@ static int json_parse_string(json_context* c, json_value* value)
 const char* json_get_string(const json_value* value)
 {
     assert(value != nullptr && value->type == json_type::JSON_STRING);
-    return (std::get<std::string>(value->s)).c_str();
+    return std::get<char *>(value->s);
 }
 
 size_t json_get_string_length(const json_value* value)

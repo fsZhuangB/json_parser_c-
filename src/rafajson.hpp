@@ -36,7 +36,7 @@ enum class json_type {
 // define json's data structure
 class json_value {
     public:
-    std::variant<std::string, size_t> s, len;
+    std::variant<char *, size_t> s, len;
     double n;
     json_type type;
 };
@@ -60,7 +60,7 @@ enum {
 };
 
 /* this function parse the json*/
-int json_parse(json_value* value, std::string json);
+int json_parse(json_value* value, const char* json);
 
 /* this function get the type of result */
 json_type json_get_type(const json_value* value);
@@ -89,7 +89,7 @@ static int json_parse_iteral(json_context* c, json_value* value, std::string lit
 /*
  * this function set a value as string
  */
-void json_set_string(json_value* value, std::string s, size_t len);
+void json_set_string(json_value* value, const char* s, size_t len);
 
 /*
  * this function free the memory of the value
