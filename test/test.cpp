@@ -232,6 +232,22 @@ static void test_access_number()
     EXPECT_EQ_DOUBLE(1234.5, json_get_number(&value));
     json_free(&value);
 }
+static void test_parse_invalid_string_escape() {
+    TEST_ERROR(JSON_PARSE_INVALID_STRING_ESCAPE, "\"\\v\"");
+    TEST_ERROR(JSON_PARSE_INVALID_STRING_ESCAPE, "\"\\'\"");
+    TEST_ERROR(JSON_PARSE_INVALID_STRING_ESCAPE, "\"\\0\"");
+    TEST_ERROR(JSON_PARSE_INVALID_STRING_ESCAPE, "\"\\x12\"");
+}
+
+static void test_parse_invalid_string_char() {
+    TEST_ERROR(JSON_PARSE_INVALID_STRING_CHAR, "\"\x01\"");
+    TEST_ERROR(JSON_PARSE_INVALID_STRING_CHAR, "\"\x1F\"");
+}
+
+static void test_parse_missing_quotation_mark() {
+    TEST_ERROR(JSON_PARSE_MISS_QUOTATION_MARK, "\"");
+    TEST_ERROR(JSON_PARSE_MISS_QUOTATION_MARK, "\"abc");
+}
 
 
 static void test_parse() {
@@ -246,7 +262,10 @@ static void test_parse() {
      test_parse_number();
      test_access_number();
      test_parse_string();
-     test_acess_string();;
+     test_acess_string();
+     test_parse_invalid_string_char();
+     test_parse_invalid_string_escape();
+     test_parse_missing_quotation_mark();
     /* ... */
 }
 
