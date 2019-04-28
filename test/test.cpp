@@ -60,13 +60,12 @@ static int test_pass = 0;
 
 #define TEST_STRING(expect, json)\
     do {\
-        json_value *v;\
-        JSON_INIT(v);\
-        printf("Run the TEST_STRING()...\n");  \
-        EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(v, json));\
-        EXPECT_EQ_INT(json_type::JSON_STRING, json_get_type(v));\
-        EXPECT_EQ_STRING(expect, json_get_string(v), json_get_string_length(v));\
-        json_free(v);\
+        json_value v;\
+        JSON_INIT(&v);\
+        EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&v, json));\
+        EXPECT_EQ_INT(json_type::JSON_STRING, json_get_type(&v));\
+        EXPECT_EQ_STRING(expect, json_get_string(&v), json_get_string_length(&v));\
+        json_free(&v);\
     } while(0)
 
 static void test_parse_null() {
@@ -129,9 +128,8 @@ static void test_parse_root_not_singular() {
 
 static void test_parse_string() 
 {
-    std::cout << "Run the test_parse_string()\n";
     TEST_STRING("", "\"\"");
-    // TEST_STRING("Hello", "\"Hello\"");
+    TEST_STRING("Hello", "\"Hello\"");
 #if 0
     TEST_STRING("Hello\nWorld", "\"Hello\\nWorld\"");
     TEST_STRING("\" \\ / \b \f \n \r \t", "\"\\\" \\\\ \\/ \\b \\f \\n \\r \\t\"");
@@ -180,27 +178,25 @@ static void test_parse_number_too_big()
 
 static void test_acess_string() 
 {
-    json_value* value;
-    JSON_INIT(value);
-    json_set_string(value, "", 0);
-    EXPECT_EQ_STRING("", json_get_string(value), json_get_string_length(value));
-    json_set_string(value, "Hello", 5);
-    EXPECT_EQ_STRING("Hello", json_get_string(value), json_get_string_length(value));
-    json_free(value);
+    json_value value;
+    JSON_INIT(&value);
+    json_set_string(&value, "", 0);
+    EXPECT_EQ_STRING("", json_get_string(&value), json_get_string_length(&value));
+    json_set_string(&value, "Hello", 5);
+    EXPECT_EQ_STRING("Hello", json_get_string(&value), json_get_string_length(&value));
+    json_free(&value);
 }
 
 static void test_parse() {
-
-    std::cout << "Run the test_parse()...\n";
-    // test_parse_null();
-    // test_parse_true();
-    // test_parse_false();
-    // test_parse_invalid_value();
-    // test_parse_expect_value();
-    // test_parse_root_not_singular();
-    // test_parse_number_too_big();
-    test_parse_string();
-    // test_acess_string();
+     test_parse_null();
+     test_parse_true();
+     test_parse_false();
+     test_parse_invalid_value();
+     test_parse_expect_value();
+     test_parse_root_not_singular();
+     test_parse_number_too_big();
+     test_parse_string();
+     test_acess_string();
     /* ... */
 }
 

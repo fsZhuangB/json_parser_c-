@@ -4,7 +4,6 @@
 /* ws value ws */
 int json_parse(json_value * value, const char* json)
 {
-    std::cout << "Run the first line of json_parse()..." << std::endl;
     json_context c;
     // int ret;
     assert(value != nullptr);
@@ -19,17 +18,14 @@ int json_parse(json_value * value, const char* json)
     if (retValue == JSON_PARSE_OK)
         {
             json_parse_whiteSpace(&c);
-                // iterator of string
-         const char* start = (c.json).c_str();
-         if (*start != '\0')
+         if (*c.json != '\0')
             {
                 value->type = json_type::JSON_NULL;
                 retValue = JSON_PARSE_ROOT_NOT_SINGULAR;
             }
         }
     assert(c.top == 0);
-    free(c.stack);
-std::cout << "Run the end line of json_parse()..." << std::endl;
+    delete(c.stack);
     return retValue;
 }
 
@@ -37,7 +33,7 @@ std::cout << "Run the end line of json_parse()..." << std::endl;
 /* ws == *(%x20 / %x09 / %x0A / %x0D) */
 static void json_parse_whiteSpace(json_context* c)
 {
-    const char* p = (c->json).c_str();
+    const char* p = c->json;
     while (*p == ' ' || *p == '\t' || *p == '\n' || *p == '\r')
         p++;
     c->json = p;
@@ -46,20 +42,16 @@ static void json_parse_whiteSpace(json_context* c)
 /*
  * this function is used to parse null / false / true
  */
-static int json_parse_iteral(json_context* c, json_value* value, std::string literal, json_type type)
+static int json_parse_iteral(json_context* c, json_value* value, const char* literal, json_type type)
 {
     size_t i;
-    // std::string::const_iterator beg = (c->json).begin();
-    // std::string::const_iterator end = (c->json).end();
-    // std::string::const_iterator literalIterator = literal.begin();
-    const char* start = (c->json).c_str();
-    EXPECT(start, literal[0]);
+    EXPECT(c, literal[0]);
     // size_t i = 0;
     for (i = 0; literal[i + 1]; i++)
-        if (start[i] != literal[i + 1])
+        if (c->json[i] != literal[i + 1])
             return JSON_PARSE_INVALID_VALUE;
 
-    c->json = (c->json).substr(i+1);
+    c->json += i;
     value->type = type;
     return JSON_PARSE_OK;
 }
@@ -69,9 +61,7 @@ static int json_parse_iteral(json_context* c, json_value* value, std::string lit
 /* value = null / false / true / number */
 static int json_parse_value(json_context* c, json_value* value)
 {
-    std::cout << "Run the json_parse_value()...\n";
-    std::string::const_iterator beg = (c->json).begin();
-    switch (*beg)
+    switch (*c->json)
     {
         case 'n':  return json_parse_iteral(c, value, "null", json_type::JSON_NULL);
         case 't':  return json_parse_iteral(c, value, "true", json_type::JSON_TRUE);
@@ -102,9 +92,8 @@ double json_get_number(const json_value* value)
 
 static int json_parse_number(json_context* c, json_value* value)
 {
-    char * end;
-    std::string::const_iterator p = (c->json).begin();
-    std::string::const_iterator e = (c->json).end();
+    const char* p = c->json;
+    // char * end;
     /* parse '-' */
     if (*p == '-')
         p++;
@@ -141,11 +130,12 @@ static int json_parse_number(json_context* c, json_value* value)
         for (p++; ISDIGIT(*p); p++);
     }
 
-    value->n = strtod((c->json).c_str(), nullptr);
+    value->n = strtod(c->json, nullptr);
+    errno = 0;
     if (errno == ERANGE && (value->n == HUGE_VAL || value->n == -HUGE_VALL))
         return JSON_PARSE_NUMBER_TOO_BIG;
     value->type =  json_type::JSON_NUMBER;
-    c->json = (c->json).assign(p, e);
+    c->json = p;
     return JSON_PARSE_OK;
 }
 
@@ -156,7 +146,7 @@ void json_set_string(json_value* value, const char* s, size_t len)
 {
     assert(value != nullptr && (s != nullptr || len == 0));
     json_free(value);
-    value->s = (char*)malloc(len + 1);
+    value->s = new char;
     memcpy(std::get<char *>(value->s), s, len);
     (std::get<char *>(value->s))[len] = '\0';
     value->len = len;
@@ -168,13 +158,12 @@ void json_free(json_value* value)
 {
     assert(value != nullptr);
     if (value->type == json_type::JSON_STRING)
-        free(std::get<char *>(value->s));
+        delete(std::get<char *>(value->s));
     value->type = json_type::JSON_NULL;
 }
 
 static void* json_context_push(json_context* c, size_t size)
 {
-    std::cout << "Running json_context_push()\n";
     void* ret;
     assert(size > 0);
     if (c->top + size >= c->size)
@@ -183,7 +172,7 @@ static void* json_context_push(json_context* c, size_t size)
             c->size = JSON_PARSE_STACK_INIT_SIZE;
         while (c->top + size >= c->size)
             c->size += c->size >> 1;  /* c->size * 1.5 */
-        c->stack = (char*)realloc(c->stack, c->size);
+        c->stack = new char;
     }
     ret = c->stack + c->top;
     c->top += size;
@@ -192,33 +181,27 @@ static void* json_context_push(json_context* c, size_t size)
 
 static void* json_context_pop(json_context *c, size_t size)
 {
-    std::cout << "Running json_context_pop()\n";
     assert(c->top >= size);
-    std::cout << "This line...\n";
     return c->stack + (c->top -= size); 
 }
 
 static int json_parse_string(json_context* c, json_value* value)
-{ 
-    std::cout << "Run the first line of json_parse_string()...\n";
+{
     size_t head = c->top, len;
     // const char* p = (c->json).c_str();
-    const char * start = (c->json).c_str();
-    std::cout << *start << std::endl;
-    EXPECT(start, '\"');
-    // start = start + 1;
-    std::cout << *start << std::endl;
-    // c->json
+    const char * p;
+    EXPECT(c, '\"');
+    p = c->json;
     for (;;)
     {
-        char ch = *start++;
+        char ch = *p++;
         switch (ch) 
         {
             case '\"':
                 len = c->top - head; 
                 json_set_string(value, (const char*)json_context_pop(c, len), len);
                 
-                c->json = start;
+                c->json = p;
                 return JSON_PARSE_OK;
             case '\0':
                 c->top = head;

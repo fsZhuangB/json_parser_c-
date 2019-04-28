@@ -12,8 +12,8 @@
 #define RAFAJSON_H__
 #define ISDIGIT(ch) ((ch) >= '0' && (ch) <= '9')
 #define ISDIGIT1TO9(ch) ((ch) >= '1' && (ch) <= '9')
-#define EXPECT(c, ch) do { assert(*c == (ch)); c++; } while (0)
-#define JSON_INIT(value) do {(value->type) = json_type::JSON_NULL;} while(0)
+#define EXPECT(c, ch) do { assert(*c->json == (ch)); c->json++; } while (0)
+#define JSON_INIT(value) do {(value)->type = json_type::JSON_NULL;} while(0)
 #define JSON_SET_NULL(value) json_free(value)
 #define PUTC(c, ch) do { *(char*) json_context_push(c, sizeof(char)) = (ch); } while(0)
 #ifndef JSON_PARSE_STACK_INIT_SIZE
@@ -44,7 +44,7 @@ class json_value {
 /* store the context of JSON text */
 class json_context {
     public:
-    std::string json;
+    const char* json;
     char* stack;
     size_t size, top;
 };
@@ -84,7 +84,7 @@ static int json_parse_number(json_context* c, json_value* value);
 /*
  * this function is used to parse null / false / true
  */
-static int json_parse_iteral(json_context* c, json_value* value, std::string literal, json_type type);
+static int json_parse_iteral(json_context* c, json_value* value, const char* literal, json_type type);
 
 /*
  * this function set a value as string
