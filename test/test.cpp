@@ -24,19 +24,32 @@ static int test_pass = 0;
     } while(0)
 
 
-/* EXPECT_EQ_INT
+/** EXPECT_EQ_INT
  * this macro get the EXPECT_EQ_BASE to show the int result 
- */
+ **/
 #define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
 
-/* EXPECT_EQ_DOUBLE
+/** EXPECT_EQ_DOUBLE
  * this macro get the EXPECT_EQ_BASE to show the double result 
- */
+**/
 #define EXPECT_EQ_DOUBLE(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%.17g");
 
-/* TEST_ERROR 
+/**
+ * EXPECT_TRUE
+ * this macro expect boolean true
+**/
+#define EXPECT_TRUE(actual) EXPECT_EQ_BASE((actual) != 0, "true", "false", "%s");
+
+/**
+ * EXPECT_FALSE
+ * this macro expect boolean false
+ **/
+#define EXPECT_FALSE(actual) EXPECT_EQ_BASE((actual) == 0, "false", "true", "%s");
+
+/**
+ * TEST_ERROR
  * simplify code to test error 
- */
+**/
 #define TEST_ERROR(error, json)                                        \
     do                                                                 \
     {                                                                  \
@@ -46,6 +59,17 @@ static int test_pass = 0;
         EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(&value));    \
     } while(0)
 
+
+/**
+ * EXPECT_EQ_DOUBLE
+ * test double numbers
+ **/
+#define EXPECT_EQ_DOUBLE(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%.17g");
+
+/**
+ * TEST_NUMBER
+ * test number
+ **/
 #define TEST_NUMBER(expect, json)                                      \
     do                                                                 \
     {                                                                  \
@@ -130,7 +154,7 @@ static void test_parse_string()
 {
     TEST_STRING("", "\"\"");
     TEST_STRING("Hello", "\"Hello\"");
-#if 0
+#if 1
     TEST_STRING("Hello\nWorld", "\"Hello\\nWorld\"");
     TEST_STRING("\" \\ / \b \f \n \r \t", "\"\\\" \\\\ \\/ \\b \\f \\n \\r \\t\"");
 #endif
@@ -187,17 +211,42 @@ static void test_acess_string()
     json_free(&value);
 }
 
+static void test_access_boolean()
+{
+     json_value value;
+     JSON_INIT(&value);
+     json_set_string(&value, "a", 1);
+     json_set_boolean(&value, 1);
+     EXPECT_TRUE(json_get_boolean(&value));
+     json_set_boolean(&value, 0);
+     EXPECT_FALSE(json_get_boolean(&value));
+     json_free(&value);
+}
+
+static void test_access_number()
+{
+    json_value value;
+    JSON_INIT(&value);
+    json_set_string(&value, "a", 1);
+    json_set_number(&value, 1234.5);
+    EXPECT_EQ_DOUBLE(1234.5, json_get_number(&value));
+    json_free(&value);
+}
+
+
 static void test_parse() {
      test_parse_null();
      test_parse_true();
      test_parse_false();
+     test_access_boolean();
      test_parse_invalid_value();
      test_parse_expect_value();
      test_parse_root_not_singular();
      test_parse_number_too_big();
      test_parse_number();
+     test_access_number();
      test_parse_string();
-     test_acess_string();
+     test_acess_string();;
     /* ... */
 }
 

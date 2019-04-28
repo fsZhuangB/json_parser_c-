@@ -205,7 +205,38 @@ static int json_parse_string(json_context* c, json_value* value)
             case '\0':
                 c->top = head;
                 return JSON_PARSE_MISS_QUOTATION_MARK;
+                /* parse the sequence of escape character */
+            case '\\':
+                switch (*p++)
+                {
+                    case '\"': PUTC(c, '\"');
+                        break;
+                    case '\\': PUTC(c, '\\');
+                        break;
+                    case '/':  PUTC(c, '/');
+                        break;
+                    case 'b':  PUTC(c, '\b');
+                        break;
+                    case 'f':  PUTC(c, '\f');
+                        break;
+                    case 'n':  PUTC(c, '\n');
+                        break;
+                    case 'r':  PUTC(c, '\r');
+                        break;
+                    case 't':  PUTC(c, '\t');
+                        break;
+                    default:
+                        c->top = head;
+                        return JSON_PARSE_INVALID_STRING_ESCAPE;
+                }
+                /* Don't forget break! */
+                break;
             default:
+                if ((unsigned char)ch < 0x20)
+                {
+                    c->top = head;
+                    return JSON_PARSE_INVALID_STRING_CHAR;
+                }
                 PUTC(c, ch);
         }       
     }
@@ -221,4 +252,29 @@ size_t json_get_string_length(const json_value* value)
 {
     assert(value != nullptr && value->type == json_type::JSON_STRING);
     return std::get<size_t>(value->len);
+}
+
+int json_get_boolean(const json_value* value)
+{
+    assert(value != nullptr && (value->type == json_type::JSON_TRUE) || (value->type == json_type::JSON_FALSE));
+    return value->type == json_type::JSON_TRUE;
+}
+
+void json_set_boolean(json_value* value, int b)
+{
+    json_free(value);
+    value->type = b ? json_type::JSON_TRUE : json_type::JSON_FALSE;
+}
+
+double json_get_number(json_value* value)
+{
+    assert(value != nullptr && value->type == json_type::JSON_NUMBER);
+    return value->type == json_type::JSON_NUMBER;
+}
+
+void json_set_number(json_value* value, double n)
+{
+    json_free(value);
+    value->n = n;
+    value->type = json_type::JSON_NUMBER;
 }
