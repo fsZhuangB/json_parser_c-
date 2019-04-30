@@ -232,7 +232,8 @@ static int json_parse_string(json_context* c, json_value* value)
                 /* Don't forget break! */
                 break;
             default:
-                if ((unsigned char)ch < 0x20)
+              /* Parse invalid string char */
+                 if ((unsigned char)ch < 0x20)
                 {
                     c->top = head;
                     return JSON_PARSE_INVALID_STRING_CHAR;
