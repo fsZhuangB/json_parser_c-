@@ -244,7 +244,8 @@ static void test_parse_invalid_string_char() {
     TEST_ERROR(JSON_PARSE_INVALID_STRING_CHAR, "\"\x1F\"");
 }
 
-static void test_parse_missing_quotation_mark() {
+static void test_parse_missing_quotation_mark()
+{
     TEST_ERROR(JSON_PARSE_MISS_QUOTATION_MARK, "\"");
     TEST_ERROR(JSON_PARSE_MISS_QUOTATION_MARK, "\"abc");
 }

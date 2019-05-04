@@ -152,7 +152,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Rafa" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rafa_json" TARGET_NAME="Rafa" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="rafa_json" RUN_TARGET_NAME="Rafa">
+    <configuration name="Rafa" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
