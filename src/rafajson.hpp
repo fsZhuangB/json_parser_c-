@@ -16,6 +16,7 @@
 #define JSON_INIT(value) do {(value)->type = json_type::JSON_NULL;} while(0)
 #define JSON_SET_NULL(value) json_free(value)
 #define PUTC(c, ch) do { *(char*) json_context_push(c, sizeof(char)) = (ch); } while(0)
+#define STRING_ERROR(ret) do { c->top = head; return ret; } while(0)// TODO
 #ifndef JSON_PARSE_STACK_INIT_SIZE
 #define JSON_PARSE_STACK_INIT_SIZE 256
 #endif
@@ -58,7 +59,9 @@ enum {
     JSON_PARSE_NUMBER_TOO_BIG,
     JSON_PARSE_MISS_QUOTATION_MARK,
     JSON_PARSE_INVALID_STRING_ESCAPE,
-    JSON_PARSE_INVALID_STRING_CHAR
+    JSON_PARSE_INVALID_STRING_CHAR,
+    JSON_PARSE_INVALID_UNICODE_HEX,
+    JSON_PARSE_INVALID_UNICODE_SURROGATE
 };
 
 /* this function parse the json*/
@@ -114,5 +117,8 @@ static void* json_context_pop(json_context* c, size_t size);
 
 static int json_parse_string(json_context* c, json_value* value);
 
+static const char* json_parse_hex4(const char *p, unsigned* u);
+
+static void json_encode_utf8(json_context* c, unsigned u);
 
 #endif
