@@ -47,6 +47,15 @@ static int test_pass = 0;
 #define EXPECT_FALSE(actual) EXPECT_EQ_BASE((actual) == 0, "false", "true", "%s");
 
 /**
+ * EXPECT_EQ_SIZE_T
+ * this macro test parse array API
+ **/
+#if defined(_MSC_VER)
+#define EXPECT_EQ_SIZE_T(expect, actual) EXPECT_EQ_BASE((expect) == (actual), (size_t)expect, (size_t)actual, "%Iu")
+#else
+#define EXPECT_EQ_SIZE_T(expect, actual) EXPECT_EQ_BASE((expect) == (actual), (size_t)expect, (size_t)actual, "%Iu")
+#endif
+/**
  * TEST_ERROR
  * simplify code to test error 
 **/
@@ -279,6 +288,16 @@ static void test_parse_invalid_unicode_surrogate() {
     TEST_ERROR(JSON_PARSE_INVALID_UNICODE_SURROGATE, "\"\\uD800\\uE000\"");
 }
 
+static void test_parse_array()
+{
+        json_value value;
+
+        JSON_INIT(&value);
+        EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&value, "[ ]"));
+        EXPECT_EQ_INT(json_type::JSON_ARRAY, json_get_type(&value));
+        EXPECT_EQ_SIZE_T(0, json_get_array_size(&value));
+        json_free(&value);
+}
 static void test_parse() {
      test_parse_null();
      test_parse_true();
@@ -297,6 +316,7 @@ static void test_parse() {
      test_parse_missing_quotation_mark();
      test_parse_invalid_unicode_hex();
      test_parse_invalid_unicode_surrogate();
+     test_parse_array();
     /* ... */
 }
 

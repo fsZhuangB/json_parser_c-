@@ -73,7 +73,8 @@ enum {
     JSON_PARSE_INVALID_STRING_ESCAPE,
     JSON_PARSE_INVALID_STRING_CHAR,
     JSON_PARSE_INVALID_UNICODE_HEX,
-    JSON_PARSE_INVALID_UNICODE_SURROGATE
+    JSON_PARSE_INVALID_UNICODE_SURROGATE,
+    JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET
 };
 
 /* this function parse the json*/
@@ -136,5 +137,7 @@ static void json_encode_utf8(json_context* c, unsigned u);
 size_t json_get_array_size(const json_value * value);
 
 json_value* json_get_array_element(const json_value* value, size_t index);
+
+static int json_parse_array(json_context* c, json_value* value);
 
 #endif

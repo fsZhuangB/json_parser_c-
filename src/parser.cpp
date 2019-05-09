@@ -68,6 +68,7 @@ static int json_parse_value(json_context* c, json_value* value)
         case 'f':  return json_parse_iteral(c, value, "false", json_type::JSON_FALSE);
         case '\0': return JSON_PARSE_EXPECT_VALUE;
         case '"':  return json_parse_string(c, value);
+        case '[':  return json_parse_array(c, value);
         default:   return json_parse_number(c, value);
     }
 }
@@ -319,6 +320,56 @@ static const char* json_parse_hex4(const char* p, unsigned* u)
     return p;
 }
 
+static int json_parse_array(json_context* c, json_value* value)
+{
+    size_t size = 0;
+    int ret;
+    EXPECT(c, '[');
+
+    if (*c->json == ']')
+    {
+        c->json++;
+        value->type = json_type::JSON_ARRAY;
+        value->size = 0;
+        value->e = nullptr;
+        return JSON_PARSE_OK;
+    }
+
+    for (;;)
+    {
+        json_value e;
+        JSON_INIT(&e);
+
+        /**
+         * call json_parse_value() parse the value
+         * json_value e is a temporary value
+         * */
+        ret = json_parse_value(c, &e);
+        if (ret != JSON_PARSE_OK)
+            return ret;
+        memcpy(json_context_push(c, sizeof(json_value)), &e, sizeof(json_value));
+        size++;
+        if (*c->json == ',')
+            c->json++;
+        else if (*c->json == ']')
+        {
+            c->json++;
+            value->type = json_type::JSON_ARRAY;
+            value->size = size;
+            size *= sizeof(json_value);
+
+            /**
+             * copy the value from stack
+             * */
+            memcpy(std::get<json_value*>(value->e) = new json_value, json_context_pop(c, size), size);
+            return JSON_PARSE_OK;
+        }
+        else
+            return JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET;
+    }
+}
+
+
 static void json_encode_utf8(json_context* c, unsigned u)
 {
     if (u <= 0x7F)
@@ -343,4 +394,19 @@ static void json_encode_utf8(json_context* c, unsigned u)
         PUTC(c, 0x80 | ( u        & 0x3F));
     }
 }
+
+size_t json_get_array_size(const json_value* value)
+{
+    assert(value != nullptr && value->type == json_type::JSON_ARRAY);
+    return std::get<size_t>(value->size);
+}
+
+json_value* json_get_array_element(const json_value* value, size_t index)
+{
+    assert(value != nullptr && value->type == json_type::JSON_ARRAY);
+    assert(index < std::get<size_t>(value->size));
+    return &std::get<json_value*>(value->e)[index];
+}
+
+
 
