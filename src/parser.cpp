@@ -156,9 +156,26 @@ void json_set_string(json_value* value, const char* s, size_t len)
 // clear the string
 void json_free(json_value* value)
 {
+    size_t i;
     assert(value != nullptr);
-    if (value->type == json_type::JSON_STRING)
-        delete(std::get<char *>(value->s));
+    switch (value->type)
+    {
+        case json_type::JSON_STRING :
+            delete(std::get<char *>(value->s));
+            break;
+
+            /**
+             * First we should free the object in the array recursively
+             * */
+        case json_type::JSON_ARRAY :
+            for (i = 0; i < std::get<size_t>(value->size); i++)
+                json_free(value);
+            delete(std::get<json_value*>(value->e));
+            break;
+
+        default:
+            break;
+    }
     value->type = json_type::JSON_NULL;
 }
 
@@ -347,7 +364,7 @@ static int json_parse_array(json_context* c, json_value* value)
          * */
         ret = json_parse_value(c, &e);
         if (ret != JSON_PARSE_OK)
-            return ret;
+            break;
         json_parse_whiteSpace(c);
         memcpy(json_context_push(c, sizeof(json_value)), &e, sizeof(json_value));
         size++;
@@ -370,8 +387,18 @@ static int json_parse_array(json_context* c, json_value* value)
             return JSON_PARSE_OK;
         }
         else
+        {
             return JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET;
+            break;
+        }
     }
+    /**
+     * Pop and free values on the stack
+     * */
+     size_t i;
+     for (i = 0; i < size; i++)
+         json_free((json_value*)json_context_pop(c, sizeof(json_value)));
+     return ret;
 }
 
 
