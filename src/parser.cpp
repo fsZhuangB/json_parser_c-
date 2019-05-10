@@ -325,6 +325,7 @@ static int json_parse_array(json_context* c, json_value* value)
     size_t size = 0;
     int ret;
     EXPECT(c, '[');
+    json_parse_whiteSpace(c);
 
     if (*c->json == ']')
     {
@@ -347,10 +348,14 @@ static int json_parse_array(json_context* c, json_value* value)
         ret = json_parse_value(c, &e);
         if (ret != JSON_PARSE_OK)
             return ret;
+        json_parse_whiteSpace(c);
         memcpy(json_context_push(c, sizeof(json_value)), &e, sizeof(json_value));
         size++;
         if (*c->json == ',')
+        {
             c->json++;
+            json_parse_whiteSpace(c);
+        }
         else if (*c->json == ']')
         {
             c->json++;

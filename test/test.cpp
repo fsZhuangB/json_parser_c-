@@ -288,8 +288,18 @@ static void test_parse_invalid_unicode_surrogate() {
     TEST_ERROR(JSON_PARSE_INVALID_UNICODE_SURROGATE, "\"\\uD800\\uE000\"");
 }
 
+static void test_parse_miss_comma_or_square_bracket() {
+#if 1
+    TEST_ERROR(JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET, "[1");
+    TEST_ERROR(JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET, "[1}");
+    TEST_ERROR(JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET, "[1 2");
+    TEST_ERROR(JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET, "[[]");
+#endif
+}
+
 static void test_parse_array()
 {
+        size_t i, j;
         json_value value;
 
         JSON_INIT(&value);
@@ -297,6 +307,38 @@ static void test_parse_array()
         EXPECT_EQ_INT(json_type::JSON_ARRAY, json_get_type(&value));
         EXPECT_EQ_SIZE_T(0, json_get_array_size(&value));
         json_free(&value);
+
+        JSON_INIT(&value);
+        EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&value, "[ null, false, true, 123, \"abc\""));
+        EXPECT_EQ_INT(json_type::JSON_ARRAY, json_get_type(&value));
+        EXPECT_EQ_SIZE_T(5, json_get_array_size(&value));
+        EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(json_get_array_element(&value, 0)));
+        EXPECT_EQ_INT(json_type::JSON_FALSE, json_get_type(json_get_array_element(&value, 1)));
+        EXPECT_EQ_INT(json_type::JSON_TRUE, json_get_type(json_get_array_element(&value, 2)));
+        EXPECT_EQ_INT(json_type::JSON_NUMBER, json_get_type(json_get_array_element(&value, 3)));
+        EXPECT_EQ_INT(json_type::JSON_STRING, json_get_type(json_get_array_element(&value, 4)));
+        EXPECT_EQ_DOUBLE(123.0, json_get_number(json_get_array_element(&value, 3)));
+        EXPECT_EQ_STRING("abc", json_get_string(json_get_array_element(&value, 4)), json_get_string_length(json_get_array_element(&value, 4)));
+        json_free(&value);
+
+        JSON_INIT(&value);
+        EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&value, "[[ ], [0], [0, 1], [0, 1, 2]]"));
+        EXPECT_EQ_INT(json_type::JSON_ARRAY, json_get_type(&value));
+        EXPECT_EQ_SIZE_T(4, json_get_array_size(&value));
+        for (i = 0; i < 4; i++)
+        {
+            json_value* a = json_get_array_element(&value, i);
+            EXPECT_EQ_INT(json_type::JSON_ARRAY, json_get_type(a));
+            EXPECT_EQ_SIZE_T(i, json_get_array_size(a));
+            for (j = 0; j < i; j++)
+            {
+                json_value* e;
+                EXPECT_EQ_INT(json_type::JSON_NUMBER, json_get_type(e));
+                EXPECT_EQ_DOUBLE((double)j, json_get_number(e));
+            }
+        }
+        json_free(&value);
+
 }
 static void test_parse() {
      test_parse_null();
@@ -317,6 +359,7 @@ static void test_parse() {
      test_parse_invalid_unicode_hex();
      test_parse_invalid_unicode_surrogate();
      test_parse_array();
+    test_parse_miss_comma_or_square_bracket();
     /* ... */
 }
 
