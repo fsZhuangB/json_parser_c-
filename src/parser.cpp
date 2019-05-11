@@ -94,8 +94,7 @@ double json_get_number(const json_value* value)
 static int json_parse_number(json_context* c, json_value* value)
 {
     const char* p = c->json;
-    // char * end;
-    /* parse '-' */
+
     if (*p == '-')
         p++;
 
@@ -169,7 +168,7 @@ void json_free(json_value* value)
              * */
         case json_type::JSON_ARRAY :
             for (i = 0; i < std::get<size_t>(value->size); i++)
-                json_free(value);
+                json_free(&std::get<json_value*>(value->e)[i]);
             delete(std::get<json_value*>(value->e));
             break;
 
@@ -189,7 +188,7 @@ static void* json_context_push(json_context* c, size_t size)
             c->size = JSON_PARSE_STACK_INIT_SIZE;
         while (c->top + size >= c->size)
             c->size += c->size >> 1;  /* c->size * 1.5 */
-        c->stack = new char;
+        c->stack = (char*)realloc(c->stack, c->size);
     }
     ret = c->stack + c->top;
     c->top += size;
@@ -304,11 +303,6 @@ void json_set_boolean(json_value* value, int b)
     value->type = b ? json_type::JSON_TRUE : json_type::JSON_FALSE;
 }
 
-double json_get_number(json_value* value)
-{
-    assert(value != nullptr && value->type == json_type::JSON_NUMBER);
-    return value->type == json_type::JSON_NUMBER;
-}
 
 void json_set_number(json_value* value, double n)
 {
@@ -336,6 +330,8 @@ static const char* json_parse_hex4(const char* p, unsigned* u)
     }
     return p;
 }
+
+static int json_parse_value(json_context* c, json_value * value);
 
 static int json_parse_array(json_context* c, json_value* value)
 {
@@ -383,7 +379,7 @@ static int json_parse_array(json_context* c, json_value* value)
             /**
              * copy the value from stack
              * */
-            memcpy(std::get<json_value*>(value->e) = new json_value, json_context_pop(c, size), size);
+            memcpy(std::get<json_value*>(value->e) = (json_value*)malloc(size), json_context_pop(c, size), size);
             return JSON_PARSE_OK;
         }
         else

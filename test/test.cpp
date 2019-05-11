@@ -53,7 +53,7 @@ static int test_pass = 0;
 #if defined(_MSC_VER)
 #define EXPECT_EQ_SIZE_T(expect, actual) EXPECT_EQ_BASE((expect) == (actual), (size_t)expect, (size_t)actual, "%Iu")
 #else
-#define EXPECT_EQ_SIZE_T(expect, actual) EXPECT_EQ_BASE((expect) == (actual), (size_t)expect, (size_t)actual, "%Iu")
+#define EXPECT_EQ_SIZE_T(expect, actual) EXPECT_EQ_BASE((expect) == (actual), (size_t)expect, (size_t)actual, "%zu")
 #endif
 /**
  * TEST_ERROR
@@ -309,7 +309,7 @@ static void test_parse_array()
         json_free(&value);
 
         JSON_INIT(&value);
-        EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&value, "[ null, false, true, 123, \"abc\""));
+        EXPECT_EQ_INT(JSON_PARSE_OK, json_parse(&value, "[ null, false, true, 123, \"abc\"]"));
         EXPECT_EQ_INT(json_type::JSON_ARRAY, json_get_type(&value));
         EXPECT_EQ_SIZE_T(5, json_get_array_size(&value));
         EXPECT_EQ_INT(json_type::JSON_NULL, json_get_type(json_get_array_element(&value, 0)));
@@ -332,7 +332,7 @@ static void test_parse_array()
             EXPECT_EQ_SIZE_T(i, json_get_array_size(a));
             for (j = 0; j < i; j++)
             {
-                json_value* e;
+                json_value* e = json_get_array_element(a, j);
                 EXPECT_EQ_INT(json_type::JSON_NUMBER, json_get_type(e));
                 EXPECT_EQ_DOUBLE((double)j, json_get_number(e));
             }
