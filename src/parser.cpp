@@ -335,7 +335,7 @@ static int json_parse_value(json_context* c, json_value * value);
 
 static int json_parse_array(json_context* c, json_value* value)
 {
-    size_t size = 0;
+    size_t i, size = 0;
     int ret;
     EXPECT(c, '[');
     json_parse_whiteSpace(c);
@@ -384,14 +384,14 @@ static int json_parse_array(json_context* c, json_value* value)
         }
         else
         {
-            return JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET;
+            ret = JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET;
             break;
         }
     }
     /**
      * Pop and free values on the stack
      * */
-     size_t i;
+     // size_t i;
      for (i = 0; i < size; i++)
          json_free((json_value*)json_context_pop(c, sizeof(json_value)));
      return ret;

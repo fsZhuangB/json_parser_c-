@@ -13,7 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e564728d-4238-4b31-9506-6f65b47c5ad3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -32,7 +31,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rafajson.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-891">
+            <state relative-caret-position="1672">
               <caret line="76" column="43" selection-start-line="76" selection-start-column="43" selection-end-line="76" selection-end-column="43" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -41,23 +40,22 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/parser.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
+            <state relative-caret-position="151">
+              <caret line="343" column="5" lean-forward="true" selection-start-line="343" selection-start-column="5" selection-end-line="343" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="336" column="45" selection-start-line="336" selection-start-column="45" selection-end-line="336" selection-end-column="45" />
+            <state relative-caret-position="-57">
+              <caret line="313" column="38" selection-start-line="313" selection-start-column="38" selection-end-line="313" selection-end-column="38" />
               <folding>
                 <element signature="e#1673#1789#0" expanded="true" />
-                <element signature="e#10760#11011#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,8 +65,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>json_free</find>
       <find>json_get_number</find>
+      <find>json_free</find>
+      <find>json_parse_array</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -87,10 +86,8 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="201" />
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="877" />
+    <option name="width" value="834" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -181,7 +178,10 @@
       <workItem from="1557368386473" duration="906000" />
       <workItem from="1557407380870" duration="3858000" />
       <workItem from="1557470962005" duration="2397000" />
-      <workItem from="1557491120869" duration="6703000" />
+      <workItem from="1557491120869" duration="7092000" />
+      <workItem from="1557832531673" duration="25000" />
+      <workItem from="1557845784766" duration="145000" />
+      <workItem from="1557889242791" duration="256000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <created>1556941774628</created>
@@ -239,27 +239,44 @@
       <option name="project" value="LOCAL" />
       <updated>1557499697183</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="passed all unit test of array">
+      <created>1557562002646</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1557562002646</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25085000" />
+    <option name="totallyTimeSpent" value="25900000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="928" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.64457834" visible="true" weight="0.18669528" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.64457834" visible="true" weight="0.30586907" />
       <window_info id="Structure" order="1" sideWeight="0.3554217" side_tool="true" weight="0.17596567" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3477707" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.29759037" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3477707" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29759037" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32771084" />
@@ -324,7 +341,8 @@
     <MESSAGE value="add array parser" />
     <MESSAGE value="add unit test to array" />
     <MESSAGE value="fix memory leak bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix memory leak bug" />
+    <MESSAGE value="passed all unit test of array" />
+    <option name="LAST_COMMIT_MESSAGE" value="passed all unit test of array" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build/CMakeLists.txt" />
@@ -332,16 +350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rafajson.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-891">
-          <caret line="76" column="43" selection-start-line="76" selection-start-column="43" selection-end-line="76" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -365,21 +373,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parser.cpp">
+    <entry file="file://$PROJECT_DIR$/src/rafajson.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        <state relative-caret-position="1672">
+          <caret line="76" column="43" selection-start-line="76" selection-start-column="43" selection-end-line="76" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="336" column="45" selection-start-line="336" selection-start-column="45" selection-end-line="336" selection-end-column="45" />
+        <state relative-caret-position="-57">
+          <caret line="313" column="38" selection-start-line="313" selection-start-column="38" selection-end-line="313" selection-end-column="38" />
           <folding>
             <element signature="e#1673#1789#0" expanded="true" />
-            <element signature="e#10760#11011#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="343" column="5" lean-forward="true" selection-start-line="343" selection-start-column="5" selection-end-line="343" selection-end-column="5" />
         </state>
       </provider>
     </entry>
