@@ -33,14 +33,18 @@ enum class json_type {
                        JSON_OBJECT 
                     };
 
-
+class json_member;
 // define json's data structure
 class json_value {
     public:
     /**
+     * object
+     * */
+     std::variant<json_member* , size_t>m, size_of_object;
+    /**
      * string
      * */
-    std::variant<char *, size_t> s, len;
+    std::variant<char *, size_t>s, len;
 
     /**
      * array
@@ -52,6 +56,14 @@ class json_value {
      * */
     double n;
     json_type type;
+};
+
+class json_member
+{
+public:
+    char * k;
+    size_t klen;
+    json_value value;
 };
 
 /* store the context of JSON text */
@@ -74,7 +86,10 @@ enum {
     JSON_PARSE_INVALID_STRING_CHAR,
     JSON_PARSE_INVALID_UNICODE_HEX,
     JSON_PARSE_INVALID_UNICODE_SURROGATE,
-    JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET
+    JSON_PARSE_MISS_COMMA_OR_SQUARE_BRACKET,
+    JSON_PARSE_MISS_KEY,
+    JSON_PARSE_MISS_COLON,
+    JSON_PARSE_MISS_COMMA_OR_CURLY_BRACKET
 };
 
 /* this function parse the json*/
@@ -139,5 +154,21 @@ size_t json_get_array_size(const json_value * value);
 json_value* json_get_array_element(const json_value* value, size_t index);
 
 static int json_parse_array(json_context* c, json_value* value);
+
+size_t json_get_object_size(const json_value* value);
+
+const char* json_get_object_key(const json_value* value, size_t index);
+
+size_t json_get_object_key_length(const json_value* value, size_t index);
+
+json_value* json_get_object_value(const json_value* value, size_t index);
+
+/**
+ * parse JSON string, write the result into str and len
+ * \TODO
+ */
+ static int json_parse_string_raw(json_context* c, char** str, size_t* len);
+
+static int json_parse_object(json_context* c, json_value* value);
 
 #endif

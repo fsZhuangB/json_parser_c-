@@ -436,5 +436,44 @@ json_value* json_get_array_element(const json_value* value, size_t index)
     return &std::get<json_value*>(value->e)[index];
 }
 
+static int json_parse_string_raw(json_context* c, char** str, size_t* len)
+{
+    /**
+     * \TODO
+     */
+}
+
+static int json_parse_object(json_context* c, json_value* value)
+{
+    size_t size;
+    json_member m;
+    int ret;
+    EXPECT(c, '}');
+    json_parse_whiteSpace(c);
+    if (*c->json == '}')
+    {
+        c->json++;
+        value->type = json_type::JSON_OBJECT;
+        value->m = 0;
+        value->size = 0;
+        return JSON_PARSE_OK;
+    }
+    m.k = nullptr;
+    size = 0;
+    for (;;)
+    {
+        JSON_INIT(&m.value);
+        /** \TODO parse key to m.k, m.klen */
+        /** \TODO parse ws colon ws */
+        if ((ret = json_parse_value(c, &m.value)) != JSON_PARSE_OK)
+            break;
+        memcpy(json_context_push(c, sizeof(json_member)), &m, sizeof(json_member));
+        size++;
+        m.k = nullptr;
+        /** \todo parse ws [comma | right-curly-brace] ws */
+    }
+    /** \todo Pop and free members on the stack */
+    return ret;
+}
 
 
