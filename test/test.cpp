@@ -386,7 +386,7 @@ static void test_parse() {
      test_parse_invalid_unicode_hex();
      test_parse_invalid_unicode_surrogate();
      test_parse_array();
-    test_parse_miss_comma_or_square_bracket();
+     test_parse_miss_comma_or_square_bracket();
     /* ... */
 }
 

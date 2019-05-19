@@ -14,7 +14,6 @@
     <list default="true" id="e564728d-4238-4b31-9506-6f65b47c5ad3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,10 +28,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/rafajson.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3098">
+            <state relative-caret-position="2901">
               <caret line="170" selection-start-line="170" selection-end-line="170" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -41,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/parser.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="71" column="54" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
+            <state relative-caret-position="367">
+              <caret line="177" column="64" selection-start-line="177" selection-start-column="64" selection-end-line="177" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -162,7 +161,7 @@
       <workItem from="1558104343284" duration="1531000" />
       <workItem from="1558146269756" duration="1327000" />
       <workItem from="1558230699666" duration="3623000" />
-      <workItem from="1558235860790" duration="466000" />
+      <workItem from="1558235860790" duration="852000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <created>1556941774628</created>
@@ -241,11 +240,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558106082596</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="finish \TODO: parse object">
+      <created>1558236619846</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1558236619846</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35324000" />
+    <option name="totallyTimeSpent" value="35710000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -265,14 +271,14 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3477707" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29759037" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29759037" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.036144577" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3554217" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32771084" />
       <window_info anchor="bottom" id="CMake" order="12" />
@@ -338,7 +344,8 @@
     <MESSAGE value="fix memory leak bug" />
     <MESSAGE value="passed all unit test of array" />
     <MESSAGE value="add parse object" />
-    <option name="LAST_COMMIT_MESSAGE" value="add parse object" />
+    <MESSAGE value="finish \TODO: parse object" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish \TODO: parse object" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build/CMakeLists.txt" />
@@ -369,16 +376,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rafajson.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3098">
-          <caret line="170" selection-start-line="170" selection-end-line="170" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="467">
@@ -391,8 +388,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/parser.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="71" column="54" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
+        <state relative-caret-position="367">
+          <caret line="177" column="64" selection-start-line="177" selection-start-column="64" selection-end-line="177" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rafajson.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2901">
+          <caret line="170" selection-start-line="170" selection-end-line="170" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

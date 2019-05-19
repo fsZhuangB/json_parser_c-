@@ -172,6 +172,14 @@ void json_free(json_value* value)
                 json_free(&std::get<json_value*>(value->e)[i]);
             delete(std::get<json_value*>(value->e));
             break;
+        case json_type::JSON_OBJECT:
+            for (i = 0; i < std::get<size_t >(value->size); i++)
+            {
+                delete(std::get<json_member*>(value->m)[i].k);
+                json_free(&std::get<json_member*>(value->m)[i].value);
+            }
+            delete(std::get<json_member*>(value->m));
+            break;
 
         default:
             break;
