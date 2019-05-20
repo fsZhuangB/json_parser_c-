@@ -16,7 +16,7 @@
 #define JSON_INIT(value) do {(value)->type = json_type::JSON_NULL;} while(0)
 #define JSON_SET_NULL(value) json_free(value)
 #define PUTC(c, ch) do { *(char*) json_context_push(c, sizeof(char)) = (ch); } while(0)
-#define STRING_ERROR(ret) do { c->top = head; return ret; } while(0)// TODO
+#define STRING_ERROR(ret) do { c->top = head; return ret; } while(0)
 #ifndef JSON_PARSE_STACK_INIT_SIZE
 #define JSON_PARSE_STACK_INIT_SIZE 256
 #endif

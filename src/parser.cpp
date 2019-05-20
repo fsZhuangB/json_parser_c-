@@ -178,7 +178,7 @@ void json_free(json_value* value)
                 delete(std::get<json_member*>(value->m)[i].k);
                 json_free(&std::get<json_member*>(value->m)[i].value);
             }
-            delete(std::get<json_member*>(value->m));
+            // delete(std::get<json_member*>(value->m));
             break;
 
         default:
@@ -460,7 +460,7 @@ static int json_parse_object(json_context* c, json_value* value)
     size_t size, i;
     json_member m;
     int ret;
-    EXPECT(c, '}');
+    EXPECT(c, '{');
     json_parse_whiteSpace(c);
     if (*c->json == '}')
     {
