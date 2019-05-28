@@ -1,17 +1,19 @@
+
 cmake_minimum_required(VERSION 3.14)
 project(rafa_json)
 
-include_directories(src)
-include_directories(test)
+set(CMAKE_CXX_STANDARD 17)
 
 add_executable(rafa_json
-        src/parser.cpp
-        src/rafajson.hpp
         src/json.hpp
+        src/jsonException.hpp
+        src/jsonValue.hpp
+        src/parse.hpp
         src/json.cpp
-        test/test.cpp
-        test/test.hpp src/jsonValue.hpp src/jsonValue.cpp src/jsonException.hpp src/parse.hpp)
+        src/jsonValue.cpp
+        src/parse.cpp)
 
-# 使用c++17标准
-add_definitions(-std=c++17)
+target_link_libraries(rafa_json /usr/local/lib/libgtest.a)
+
+add_library (rafajson STATIC src/json.cpp src/jsonValue.cpp src/parse.cpp)
 

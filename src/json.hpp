@@ -47,9 +47,22 @@ class json_value;
          * */
         Json(void *) = delete;
 
-
     public:
         ~Json();
+
+        /**
+         * json's copy constructor && copy assignment
+         * */
+    public:
+        Json(const Json& rhs);
+        Json& operator=(Json& rhs) noexcept;
+
+        /**
+         * move constructor && assignment
+         * */
+    public:
+        Json(Json&&) noexcept;
+
 
         /**
          * type interface

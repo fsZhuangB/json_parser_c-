@@ -17,5 +17,45 @@ namespace rafaJSON
     {
     public:
         // ctor
+        explicit Parser(const char* cstr) noexcept : _start(cstr), _curr(cstr) {}
+        explicit Parser(const std::string& content) noexcept : _start(content.c_str()), _curr(content.c_str()) {}
+
+    public:
+        // uncopyable
+        Parser(const Parser&) = delete;
+        Parser& operator=(const Parser&) = delete;
+
+        /**
+         * parse_aux interface
+         * \TODO 1. parse4hex()
+         *       2. encodeUTF8()
+         *       3. parse_raw_string()
+         * */
+    private:
+        void json_parse_whitespace() noexcept;
+
+        // indicate the error position
+        void error(const std::string& msg) const;
+
+        /**
+         * parse interface
+         * */
+    private:
+        Json json_parse_value();
+        Json json_parse_literal(const std::string& literal);
+
+        /**
+         * public parse interface
+         * */
+    public:
+        Json parse();
+
+    private:
+        /**
+         * private data member
+         * two const char* pointers point to the context's current position and start position
+         * */
+         const char* _start;
+         const char* _curr;
     };
 }

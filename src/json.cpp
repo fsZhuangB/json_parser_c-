@@ -4,6 +4,7 @@
 
 #include "json.hpp"
 #include "jsonException.hpp"
+#include "jsonValue.hpp"
 
 namespace rafaJSON
 {
@@ -14,6 +15,32 @@ namespace rafaJSON
      Json::Json(bool val) : _jsonValue(std::make_unique<json_value>(val)) {}
 
      Json::~Json() = default;
+
+    /**
+     * json's copy constructor && copy assignment
+     * */
+    Json::Json(const Json& rhs)
+    {
+        switch (rhs.json_get_type())
+        {
+            case json_type::JSON_NULL: _jsonValue = std::make_unique<json_value>(nullptr);
+                break;
+            case json_type::JSON_BOOL: _jsonValue = std::make_unique<json_value>(rhs.json_value_to_Bool());
+                break;
+        }
+    }
+
+//    Json& Json::operator=(Json& rhs) noexcept
+//    {
+//        Json temp(rhs);
+//        swap(temp);
+//        return *this;
+//
+//    }
+    /***
+     *  Json's move operation=default
+     */
+    Json::Json(Json&& rhs) noexcept = default;
 
      /**
       * type interface
