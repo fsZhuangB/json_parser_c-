@@ -9,15 +9,14 @@
 #include <unordered_map>
 #include <vector>
 #include <variant>
-#include "jsonValue.cpp"
+#include "jsonValue.hpp"
 
 namespace rafaJSON
 {
     enum class json_type
     {
         JSON_NULL,
-        JSON_FALSE,
-        JSON_TRUE,
+        JSON_BOOL,
         JSON_NUMBER,
         JSON_STRING,
         JSON_ARRAY,
@@ -43,6 +42,11 @@ class json_value;
         Json(std::nullptr_t);
         Json(bool);
 
+        /**
+         * this prevent Json(some_pointer) from accidentally producing a bool
+         * */
+        Json(void *) = delete;
+
 
     public:
         ~Json();
@@ -52,20 +56,29 @@ class json_value;
          * */
     public:
         json_type json_get_type() const noexcept;
-        bool isNull() const noexcept;
-        bool isBool() const noexcept;
+        bool json_value_is_Null() const noexcept;
+        bool json_value_is_Bool() const noexcept;
 
 
         /**
-         * convert json object into value
+         * convert json object into value instance
          * */
     public:
-        bool toBool() const;
+        bool json_value_to_Bool() const;
+
+        /**
+         * parse && serialize interface
+         * */
+    public:
+        static Json parse(const std::string& content, std::string& errMsg) noexcept;
+        // \TODO
+        std::string serialize() const noexcept;
 
         /**
          * data member
          * */
     private:
+        // use _jsonValue as a pointer to json_value
         std::unique_ptr<json_value> _jsonValue;
 
     };

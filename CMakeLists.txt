@@ -10,7 +10,7 @@ add_executable(rafa_json
         src/json.hpp
         src/json.cpp
         test/test.cpp
-        test/test.hpp src/jsonValue.cpp)
+        test/test.hpp src/jsonValue.hpp src/jsonValue.cpp src/jsonException.hpp src/parse.hpp)
 
 # 使用c++17标准
 add_definitions(-std=c++17)
