@@ -30,13 +30,13 @@ namespace rafaJSON
         }
     }
 
-//    Json& Json::operator=(Json& rhs) noexcept
-//    {
-//        Json temp(rhs);
-//        swap(temp);
-//        return *this;
-//
-//    }
+    Json& Json::operator=(Json& rhs) noexcept
+    {
+        Json temp(rhs);
+        swap(temp);
+        return *this;
+
+    }
     /***
      *  Json's move operation=default
      */
@@ -70,5 +70,12 @@ namespace rafaJSON
       bool Json::json_value_to_Bool() const
       {
           return _jsonValue->json_value_to_bool();
+      }
+
+      /** aux interface copy && swap */
+      void Json::swap(rafaJSON::Json &rhs) noexcept
+      {
+          using std::swap;
+          swap(_jsonValue, rhs._jsonValue);
       }
 }

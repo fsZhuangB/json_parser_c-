@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="rafa_json" targetName="rafa_json" />
       <config projectName="rafa_json" targetName="rafajson" />
+      <config projectName="rafa_json" targetName="rafa_json" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -14,10 +14,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e564728d-4238-4b31-9506-6f65b47c5ad3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/json.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/json.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/json.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/json.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parse.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jsonValue.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsonValue.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,16 +33,28 @@
     <favorites_list name="rafa_json" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5114449">
+    <splitter split-orientation="horizontal" split-proportion="0.43705294">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/parse.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="538">
-                  <caret line="35" selection-start-line="35" selection-end-line="35" />
+                <state relative-caret-position="474">
+                  <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
                   <folding>
                     <element signature="e#45#65#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parse.hpp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="660">
+                  <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+                  <folding>
+                    <element signature="e#60#79#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -53,16 +64,16 @@
             <entry file="file://$PROJECT_DIR$/src/jsonException.hpp">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="418">
-                  <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+                  <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/json.hpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
-                  <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+                <state relative-caret-position="260">
+                  <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
                   <folding>
                     <element signature="e#60#77#0" expanded="true" />
                   </folding>
@@ -70,11 +81,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/json.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-76">
-                  <caret line="40" column="34" lean-forward="true" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+                <state relative-caret-position="707">
+                  <caret line="80" column="1" selection-start-line="80" selection-start-column="1" selection-end-line="80" selection-end-column="1" />
                   <folding>
                     <element signature="e#46#65#0" expanded="true" />
                   </folding>
@@ -83,12 +94,12 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/parse.hpp">
+            <entry file="file://$PROJECT_DIR$/src/jsonValue.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="815">
-                  <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+                <state relative-caret-position="408">
+                  <caret line="41" column="47" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
                   <folding>
-                    <element signature="e#60#79#0" expanded="true" />
+                    <element signature="e#46#70#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -98,10 +109,22 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/jsonValue.cpp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="418">
+                  <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+                  <folding>
+                    <element signature="e#46#70#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/json.hpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1173">
+                <state relative-caret-position="251">
                   <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
                   <folding>
                     <element signature="e#60#77#0" expanded="true" />
@@ -110,11 +133,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/parse.hpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="792">
-                  <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+                <state relative-caret-position="194">
+                  <caret line="33" column="18" lean-forward="true" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
                   <folding>
                     <element signature="e#60#79#0" expanded="true" />
                   </folding>
@@ -134,8 +157,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/json.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="553">
-                  <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+                <state relative-caret-position="456">
+                  <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
                   <folding>
                     <element signature="e#46#65#0" expanded="true" />
                   </folding>
@@ -146,7 +169,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/jsonValue.hpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="888">
+                <state relative-caret-position="739">
                   <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
                   <folding>
                     <element signature="e#60#79#0" expanded="true" />
@@ -158,8 +181,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/parse.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="133">
-                  <caret line="102" column="21" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
+                <state relative-caret-position="469">
+                  <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
                   <folding>
                     <element signature="e#45#65#0" expanded="true" />
                   </folding>
@@ -192,12 +215,12 @@
         <option value="$PROJECT_DIR$/src/rafajson.hpp" />
         <option value="$PROJECT_DIR$/src/jsonValue.hpp" />
         <option value="$PROJECT_DIR$/src/jsonException.hpp" />
-        <option value="$PROJECT_DIR$/src/jsonValue.cpp" />
         <option value="$PROJECT_DIR$/src/parse.hpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/jsonValue.cpp" />
+        <option value="$PROJECT_DIR$/src/json.cpp" />
         <option value="$PROJECT_DIR$/src/parse.cpp" />
         <option value="$PROJECT_DIR$/src/json.hpp" />
-        <option value="$PROJECT_DIR$/src/json.cpp" />
       </list>
     </option>
   </component>
@@ -321,7 +344,8 @@
       <workItem from="1558967583072" duration="1969000" />
       <workItem from="1559005881311" duration="1164000" />
       <workItem from="1559029808400" duration="4459000" />
-      <workItem from="1559043754588" duration="3582000" />
+      <workItem from="1559043754588" duration="3652000" />
+      <workItem from="1559481012957" duration="2538000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <created>1556941774628</created>
@@ -435,11 +459,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559036419714</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="add parse.cpp">
+      <created>1559047930356</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1559047930356</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52361000" />
+    <option name="totallyTimeSpent" value="54969000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -464,7 +495,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.036144577" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.4060241" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49928468" weight="0.35301206" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.30240965" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32771084" />
@@ -476,22 +507,22 @@
       <window_info anchor="right" id="Call Graph" order="4" show_stripe_button="false" sideWeight="0.50063694" side_tool="true" weight="0.56088823" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.64457834" visible="true" weight="0.17095852" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.64457834" weight="0.17095852" />
       <window_info id="Structure" order="1" sideWeight="0.3554217" side_tool="true" weight="0.17596567" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" weight="0.3297568" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3477707" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.51325303" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.46144578" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.036144577" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.036144577" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49928468" weight="0.35301206" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.30240965" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32771084" />
-      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49936306" visible="true" weight="0.021459227" />
@@ -559,7 +590,8 @@
     <MESSAGE value="passed all unit test" />
     <MESSAGE value="refactor rafajson, implentation the interface" />
     <MESSAGE value="add new interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new interface" />
+    <MESSAGE value="add parse.cpp" />
+    <option name="LAST_COMMIT_MESSAGE" value="add parse.cpp" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build/CMakeLists.txt" />
@@ -610,26 +642,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/jsonValue.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-185">
-          <caret line="19" column="49" lean-forward="true" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
-          <folding>
-            <element signature="e#46#70#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jsonValue.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="35" column="33" lean-forward="true" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
-          <folding>
-            <element signature="e#46#70#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/jsonValue.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
@@ -644,20 +656,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/parse.hpp">
+    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/stdexcept">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+        <state relative-caret-position="260">
+          <caret line="99" column="19" lean-forward="true" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/jsonValue.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+          <folding>
+            <element signature="e#46#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jsonValue.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="41" column="47" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
+          <folding>
+            <element signature="e#46#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parse.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
           <folding>
             <element signature="e#60#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/stdexcept">
+    <entry file="file://$PROJECT_DIR$/src/json.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="99" column="19" lean-forward="true" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
+        <state relative-caret-position="707">
+          <caret line="80" column="1" selection-start-line="80" selection-start-column="1" selection-end-line="80" selection-end-column="1" />
+          <folding>
+            <element signature="e#46#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/json.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
+          <folding>
+            <element signature="e#60#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jsonException.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -668,9 +727,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/json.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
+          <folding>
+            <element signature="e#46#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/jsonValue.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="888">
+        <state relative-caret-position="739">
           <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
           <folding>
             <element signature="e#60#79#0" expanded="true" />
@@ -680,77 +749,40 @@
     </entry>
     <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/parse.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="102" column="21" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
+        <state relative-caret-position="469">
+          <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
           <folding>
             <element signature="e#45#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse.cpp">
+    <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/parse.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-          <folding>
-            <element signature="e#45#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jsonException.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/json.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
-          <folding>
-            <element signature="e#60#77#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+        <state relative-caret-position="194">
+          <caret line="33" column="18" lean-forward="true" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
           <folding>
             <element signature="e#60#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/json.cpp">
+    <entry file="file://$PROJECT_DIR$/src/parse.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+        <state relative-caret-position="474">
+          <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
           <folding>
-            <element signature="e#46#65#0" expanded="true" />
+            <element signature="e#45#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/CLionProjects/refactorRafajson/src/json.hpp">
+    <entry file="file://$PROJECT_DIR$/src/json.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
+        <state relative-caret-position="260">
+          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
           <folding>
             <element signature="e#60#77#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/json.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="40" column="34" lean-forward="true" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-          <folding>
-            <element signature="e#46#65#0" expanded="true" />
           </folding>
         </state>
       </provider>

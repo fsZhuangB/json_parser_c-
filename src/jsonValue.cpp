@@ -4,6 +4,7 @@
 
 #include "jsonValue.hpp"
 #include "json.hpp"
+#include "jsonException.hpp"
 
 namespace rafaJSON
 {
@@ -32,18 +33,26 @@ namespace rafaJSON
      * */
      std::nullptr_t json_value::json_value_to_null() const
      {
-         /**
-          * \TODO:catch exception
-          * */
-         return std::get<std::nullptr_t>(_val);
+         try
+         {
+             return std::get<std::nullptr_t >(_val);
+         }
+         catch (const std::bad_variant_access&)
+         {
+             throw JsonException("Not a null");
+         }
      }
 
      bool json_value::json_value_to_bool() const
      {
-         /**
-          * \TODO:catch exception
-          * */
-          return std::get<bool>(_val);
+         try
+         {
+             return std::get<bool>(_val);
+         }
+         catch (const std::bad_variant_access&)
+         {
+             throw JsonException("Not a bool");
+         }
 
      }
 

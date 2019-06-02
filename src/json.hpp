@@ -87,6 +87,9 @@ class json_value;
         // \TODO
         std::string serialize() const noexcept;
 
+    public:
+        void swap(Json&) noexcept; // make copy && swap
+
         /**
          * data member
          * */
