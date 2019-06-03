@@ -42,6 +42,17 @@ class json_value;
         Json(std::nullptr_t);
         Json(bool);
 
+        /** convert int into double */
+        Json(int val) : Json(1.0 * val) {}
+        Json(double);
+        Json(const char* cstr) : Json(std::string(cstr)) {}
+        Json(const std::string&);
+        Json(std::string&&);
+        Json(const _array&);
+        Json(_array&&);
+        Json(const _object&);
+        Json(_object);
+
         /**
          * this prevent Json(some_pointer) from accidentally producing a bool
          * */
@@ -54,14 +65,15 @@ class json_value;
          * json's copy constructor && copy assignment
          * */
     public:
-        Json(const Json& rhs);
-        Json& operator=(Json& rhs) noexcept;
+        Json(const Json&);
+        Json& operator=(Json&) noexcept;
 
         /**
          * move constructor && assignment
          * */
     public:
         Json(Json&&) noexcept;
+        Json& operator=(Json&&) noexcept;
 
 
         /**

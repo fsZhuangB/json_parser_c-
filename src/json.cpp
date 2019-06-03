@@ -5,6 +5,7 @@
 #include "json.hpp"
 #include "jsonException.hpp"
 #include "jsonValue.hpp"
+#include "parse.hpp"
 
 namespace rafaJSON
 {
@@ -27,10 +28,11 @@ namespace rafaJSON
                 break;
             case json_type::JSON_BOOL: _jsonValue = std::make_unique<json_value>(rhs.json_value_to_Bool());
                 break;
+            // case json_type::JSON_NUMBER: _jsonValue = std::make_unique<json_value>(rhs.json_va)
         }
     }
 
-    Json& Json::operator=(Json& rhs) noexcept
+    Json const & Json::operator=(Json& rhs) noexcept
     {
         Json temp(rhs);
         swap(temp);
@@ -41,6 +43,7 @@ namespace rafaJSON
      *  Json's move operation=default
      */
     Json::Json(Json&& rhs) noexcept = default;
+    Json & Json::operator=(Json &&rhs) noexcept = default;
 
      /**
       * type interface
@@ -77,5 +80,21 @@ namespace rafaJSON
       {
           using std::swap;
           swap(_jsonValue, rhs._jsonValue);
+      }
+
+      /** parse interface */
+      Json Json::parse(const std::string &content, std::string &errMsg) noexcept
+      {
+          try
+          {
+              Parser p(content);
+              return p.parse();
+          }
+          catch (JsonException& e)
+          {
+              errMsg = e.what();
+              return Json(nullptr);
+          }
+
       }
 }
