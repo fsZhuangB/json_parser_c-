@@ -35,7 +35,7 @@ namespace rafaJSON
         void json_parse_whitespace() noexcept;
 
         // indicate the error position
-        void error(const std::string& msg) const;
+        Json error(const std::string& msg) const;
 
         /**
          * parse interface

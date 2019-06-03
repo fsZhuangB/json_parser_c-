@@ -3,6 +3,7 @@
 //
 
 #pragma once
+
 #include "json.hpp"
 #include "jsonException.hpp"
 #include <variant>
