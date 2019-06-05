@@ -3,8 +3,6 @@
 //
 
 #include "jsonValue.hpp"
-#include "json.hpp"
-#include "jsonException.hpp"
 
 namespace rafaJSON
 {
@@ -18,14 +16,14 @@ namespace rafaJSON
             return json_type::JSON_NULL;
         else if (std::holds_alternative<bool>(_val))
             return json_type::JSON_BOOL;
-        else if (std::holds_alternative<double>(_val))
-            return json_type::JSON_NUMBER;
-        else if (std::holds_alternative<std::string>(_val))
-            return json_type::JSON_STRING;
-        else if (std::holds_alternative<Json::_array>(_val))
-            return json_type::JSON_ARRAY;
-        else
-            return json_type::JSON_OBJECT;
+//        else if (std::holds_alternative<double>(_val))
+//            return json_type::JSON_NUMBER;
+//        else if (std::holds_alternative<std::string>(_val))
+//            return json_type::JSON_STRING;
+//        else if (std::holds_alternative<Json::_array>(_val))
+//            return json_type::JSON_ARRAY;
+//        else
+//            return json_type::JSON_OBJECT;
     }
 
     /**

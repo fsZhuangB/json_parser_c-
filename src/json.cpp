@@ -32,13 +32,13 @@ namespace rafaJSON
         }
     }
 
-    Json const & Json::operator=(Json& rhs) noexcept
-    {
-        Json temp(rhs);
-        swap(temp);
-        return *this;
-
-    }
+//    Json const & Json::operator=(Json& rhs) noexcept
+//    {
+//        Json temp(rhs);
+//        swap(temp);
+//        return *this;
+//
+//    }
     /***
      *  Json's move operation=default
      */

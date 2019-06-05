@@ -11,7 +11,7 @@ add_executable(rafa_json
         src/parse.hpp
         src/json.cpp
         src/jsonValue.cpp
-        src/parse.cpp)
+        src/parse.cpp json_test/test.cpp json_test/checkJson.cpp)
 
 target_link_libraries(rafa_json /usr/local/lib/libgtest.a)
 

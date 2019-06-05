@@ -10,6 +10,7 @@
 
 namespace rafaJSON
 {
+    enum class json_type;
     class json_value
     {
         /**
