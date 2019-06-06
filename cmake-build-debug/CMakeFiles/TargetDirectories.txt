@@ -1,0 +1,4 @@
+/Users/fszhuangb/Documents/rafa_json/cmake-build-debug/CMakeFiles/rafajson.dir
+/Users/fszhuangb/Documents/rafa_json/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/fszhuangb/Documents/rafa_json/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/fszhuangb/Documents/rafa_json/cmake-build-debug/CMakeFiles/rafa_json.dir

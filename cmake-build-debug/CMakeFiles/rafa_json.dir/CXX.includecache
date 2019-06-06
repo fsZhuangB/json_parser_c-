@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/fszhuangb/Documents/rafa_json/json_test/checkJson.cpp
+gtest/gtest.h
+-
+../src/json.hpp
+/Users/fszhuangb/Documents/rafa_json/src/json.hpp
+
+/Users/fszhuangb/Documents/rafa_json/src/json.hpp
+string
+-
+memory
+-
+unordered_map
+-
+vector
+-
+variant
+-
+jsonValue.hpp
+/Users/fszhuangb/Documents/rafa_json/src/jsonValue.hpp
+
+/Users/fszhuangb/Documents/rafa_json/src/jsonException.hpp
+stdexcept
+-
+
+/Users/fszhuangb/Documents/rafa_json/src/jsonValue.cpp
+jsonValue.hpp
+/Users/fszhuangb/Documents/rafa_json/src/jsonValue.hpp
+
+/Users/fszhuangb/Documents/rafa_json/src/jsonValue.hpp
+json.hpp
+/Users/fszhuangb/Documents/rafa_json/src/json.hpp
+jsonException.hpp
+/Users/fszhuangb/Documents/rafa_json/src/jsonException.hpp
+variant
+-
+

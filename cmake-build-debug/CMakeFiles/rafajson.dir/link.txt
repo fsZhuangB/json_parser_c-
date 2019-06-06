@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc librafajson.a  CMakeFiles/rafajson.dir/src/json.cpp.o CMakeFiles/rafajson.dir/src/jsonValue.cpp.o CMakeFiles/rafajson.dir/src/parse.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib librafajson.a
