@@ -29,7 +29,7 @@ Json parse_ok(const string& strJson)
 #define test_null(strJson) \
  do                             \
      {\
-    Json json = parse_ok;\
+    Json json = parse_ok(strJson);\
     EXPECT_TRUE(json.json_value_is_Null());\
    } while(0)
 
