@@ -14,6 +14,7 @@ namespace rafaJSON
      * */
      Json::Json(std::nullptr_t) : _jsonValue(std::make_unique<json_value>(nullptr)) {}
      Json::Json(bool val) : _jsonValue(std::make_unique<json_value>(val)) {}
+     Json::Json(double val) : _jsonValue(std::make_unique<json_value>(val)) {}
 
      Json::~Json() = default;
 
@@ -24,11 +25,13 @@ namespace rafaJSON
     {
         switch (rhs.json_get_type())
         {
-            case json_type::JSON_NULL: _jsonValue = std::make_unique<json_value>(nullptr);
+            case json_type ::JSON_NULL: _jsonValue = std::make_unique<json_value>(nullptr);
                 break;
-            case json_type::JSON_BOOL: _jsonValue = std::make_unique<json_value>(rhs.json_value_to_Bool());
+            case json_type ::JSON_BOOL: _jsonValue = std::make_unique<json_value>(rhs.json_value_to_Bool());
                 break;
-            // case json_type::JSON_NUMBER: _jsonValue = std::make_unique<json_value>(rhs.json_va)
+            case json_type ::JSON_NUMBER: _jsonValue = std::make_unique<json_value>(rhs.json_value_to_Double());
+                break;
+//            case json_type ::JSON_STRING: _jsonValue = std::make_unique<json_value>(rh)
         }
     }
 
@@ -58,12 +61,17 @@ namespace rafaJSON
 
      bool Json::json_value_is_Null() const noexcept
      {
-         return json_get_type() == json_type::JSON_NULL;
+         return json_get_type() == json_type ::JSON_NULL;
      }
 
      bool Json::json_value_is_Bool() const noexcept
      {
-         return json_get_type() == json_type::JSON_BOOL;
+         return json_get_type() == json_type ::JSON_BOOL;
+     }
+
+     bool Json::json_value_is_Number() const noexcept
+     {
+         return json_get_type() == json_type ::JSON_NUMBER;
      }
 
      /**
@@ -73,6 +81,11 @@ namespace rafaJSON
       bool Json::json_value_to_Bool() const
       {
           return _jsonValue->json_value_to_bool();
+      }
+
+      double Json::json_value_to_Double() const
+      {
+          return _jsonValue->json_value_to_double();
       }
 
       /** aux interface copy && swap */

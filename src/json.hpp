@@ -83,6 +83,7 @@ class json_value;
         json_type json_get_type() const noexcept;
         bool json_value_is_Null() const noexcept;
         bool json_value_is_Bool() const noexcept;
+        bool json_value_is_Number() const noexcept;
 
 
         /**
@@ -90,6 +91,7 @@ class json_value;
          * */
     public:
         bool json_value_to_Bool() const;
+        double json_value_to_Double() const;
 
         /**
          * parse && serialize interface

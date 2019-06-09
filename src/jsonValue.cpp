@@ -3,6 +3,8 @@
 //
 
 #include "jsonValue.hpp"
+#include "jsonException.hpp"
+
 
 namespace rafaJSON
 {
@@ -13,13 +15,13 @@ namespace rafaJSON
     json_type json_value::json_get_type() const noexcept
     {
         if (std::holds_alternative<std::nullptr_t>(_val))
-            return json_type::JSON_NULL;
+            return json_type ::JSON_NULL;
         else if (std::holds_alternative<bool>(_val))
-            return json_type::JSON_BOOL;
-//        else if (std::holds_alternative<double>(_val))
-//            return json_type::JSON_NUMBER;
-//        else if (std::holds_alternative<std::string>(_val))
-//            return json_type::JSON_STRING;
+            return json_type ::JSON_BOOL;
+        else if (std::holds_alternative<double>(_val))
+            return json_type ::JSON_NUMBER;
+        else
+            return json_type::JSON_STRING;
 //        else if (std::holds_alternative<Json::_array>(_val))
 //            return json_type::JSON_ARRAY;
 //        else
@@ -50,6 +52,18 @@ namespace rafaJSON
          catch (const std::bad_variant_access&)
          {
              throw JsonException("Not a bool");
+         }
+     }
+
+     double json_value::json_value_to_double() const
+     {
+         try
+         {
+             return std::get<double>(_val);
+         }
+         catch (const std::bad_variant_access&)
+         {
+             throw JsonException("Not a double");
          }
 
      }

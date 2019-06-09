@@ -19,6 +19,7 @@ namespace rafaJSON
     public:
         explicit json_value(std::nullptr_t) : _val(nullptr) {}
         explicit json_value(bool val) : _val(val) {}
+        explicit json_value(double val) : _val(val) {}
 
         /**
          * dtor
@@ -44,12 +45,13 @@ namespace rafaJSON
     public:
         std::nullptr_t json_value_to_null() const;
         bool json_value_to_bool() const;
+        double json_value_to_double() const;
 
     /**
      * std::variant is a C++17 features,like union in C language
      * */
     private:
-        std::variant<std::nullptr_t, bool> _val;
+        std::variant<std::nullptr_t, bool, double, std::string> _val;
     };
 
 }
