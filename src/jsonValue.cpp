@@ -65,7 +65,21 @@ namespace rafaJSON
          {
              throw JsonException("Not a double");
          }
+     }
+
+     const std::string& json_value::json_value_to_string() const
+     {
+         try
+         {
+             return std::get<std::string>(_val);
+         }
+         catch (const std::bad_variant_access&)
+         {
+             throw JsonException("Not a string");
+         }
 
      }
+
+
 
 }

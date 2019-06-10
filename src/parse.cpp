@@ -63,13 +63,13 @@ namespace rafaJSON
      {
          /** make true the number is valid */
          if (*_curr == '-') ++_curr;
-         if (*_curr == 0)
+         if (*_curr == '0')
              ++_curr;
          else
          {
              if (!is_1_to_9(*_curr))
                  error("INVALID VALUE!");
-             while (!is_1_to_9(*++_curr)); // parse all number here
+             while (is_0_to_9(*++_curr)); // parse all number here
          }
 
          if (*_curr == '.')
@@ -77,7 +77,7 @@ namespace rafaJSON
              /** There must be a number after '.' */
              if (!is_0_to_9(*++_curr))
                  error("INVALID VALUE");
-             while (!is_0_to_9(*++_curr));
+             while (is_0_to_9(*++_curr));
          }
 
          if (toupper(*_curr) == 'E')
@@ -87,7 +87,7 @@ namespace rafaJSON
                  ++_curr;
              if (!is_0_to_9(*_curr))
                  error("INVALID VALUE");
-             while (!is_0_to_9(*++_curr));
+             while (is_0_to_9(*++_curr));
          }
 
          /** we use function strtod() in cstdlib.h

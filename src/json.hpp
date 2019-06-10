@@ -45,9 +45,11 @@ class json_value;
         /** convert int into double */
         Json(int val) : Json(1.0 * val) {}
         Json(double);
+
+        /** witnout this ctor, Json("xx") will call Json(bool) */
         Json(const char* cstr) : Json(std::string(cstr)) {}
-        Json(const std::string&);
-        Json(std::string&&);
+        Json(const std::string&);  // copy constructor， use std::string's ctor
+        Json(std::string&&);       // move constructor
         Json(const _array&);
         Json(_array&&);
         Json(const _object&);
@@ -84,6 +86,7 @@ class json_value;
         bool json_value_is_Null() const noexcept;
         bool json_value_is_Bool() const noexcept;
         bool json_value_is_Number() const noexcept;
+        bool json_value_is_String() const noexcept;
 
 
         /**
@@ -92,6 +95,7 @@ class json_value;
     public:
         bool json_value_to_Bool() const;
         double json_value_to_Double() const;
+        const std::string& json_value_to_String() const;
 
         /**
          * parse && serialize interface

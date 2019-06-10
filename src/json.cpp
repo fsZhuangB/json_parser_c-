@@ -15,6 +15,8 @@ namespace rafaJSON
      Json::Json(std::nullptr_t) : _jsonValue(std::make_unique<json_value>(nullptr)) {}
      Json::Json(bool val) : _jsonValue(std::make_unique<json_value>(val)) {}
      Json::Json(double val) : _jsonValue(std::make_unique<json_value>(val)) {}
+     Json::Json(const std::string& val) : _jsonValue(std::make_unique<json_value>(val)) {}
+     Json::Json(std::string&& val) : _jsonValue(std::make_unique<json_value>(std::move(val))) {}
 
      Json::~Json() = default;
 
@@ -31,7 +33,8 @@ namespace rafaJSON
                 break;
             case json_type ::JSON_NUMBER: _jsonValue = std::make_unique<json_value>(rhs.json_value_to_Double());
                 break;
-//            case json_type ::JSON_STRING: _jsonValue = std::make_unique<json_value>(rh)
+            case json_type ::JSON_STRING: _jsonValue = std::make_unique<json_value>(rhs.json_value_to_String());
+                break;
         }
     }
 
@@ -74,6 +77,11 @@ namespace rafaJSON
          return json_get_type() == json_type ::JSON_NUMBER;
      }
 
+     bool Json::json_value_is_String() const noexcept
+     {
+         return json_get_type() == json_type ::JSON_STRING;
+     }
+
      /**
       * parse interface:
       * convert json object into value instance
@@ -86,6 +94,11 @@ namespace rafaJSON
       double Json::json_value_to_Double() const
       {
           return _jsonValue->json_value_to_double();
+      }
+
+      const std::string& Json::json_value_to_String() const
+      {
+          return _jsonValue->json_value_to_string();
       }
 
       /** aux interface copy && swap */
