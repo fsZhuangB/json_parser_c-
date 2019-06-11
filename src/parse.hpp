@@ -27,8 +27,6 @@ namespace rafaJSON
 
         /**
          * parse_aux interface
-         * \TODO 1. parse4hex()
-         *       2. encodeUTF8()
          * */
     private:
         void json_parse_whitespace() noexcept;

@@ -112,7 +112,7 @@ class json_value;
          * data member
          * */
     private:
-        // use _jsonValue as a pointer to json_value
+        /** use _jsonValue as a pointer to json_value */
         std::unique_ptr<json_value> _jsonValue;
     };
 }

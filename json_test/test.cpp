@@ -121,6 +121,10 @@ TEST(Str2Json, JsonString)
     s += "World";
     test_string(s, "\"Hello\\u0000World\"");
     test_string("\x24", "\"\\u0024\"");
+    test_string("\xC2\xA2", "\"\\u00A2\"");
+    test_string("\xE2\x82\xAC", "\"\\u20AC\"");
+    test_string("\xF0\x9D\x84\x9E", "\"\\uD834\\uDD1E\"");
+    test_string("\xF0\x9D\x84\x9E", "\"\\ud834\\udd1e\"");
 
     string errMsg;
     Json json = Json::parse("\"something\"", errMsg);

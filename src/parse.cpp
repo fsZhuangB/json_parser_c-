@@ -218,7 +218,7 @@ namespace rafaJSON
 
      unsigned Parser::json_parse_hex4()
      {
-         unsigned u;
+         unsigned u = 0;
          int i;
          for (i = 0; i != 4; ++i)
          {
