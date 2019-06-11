@@ -29,10 +29,13 @@ namespace rafaJSON
          * parse_aux interface
          * \TODO 1. parse4hex()
          *       2. encodeUTF8()
-         *       3. parse_raw_string()
          * */
     private:
         void json_parse_whitespace() noexcept;
+        std::string json_parse_raw_string();
+        /** parse utf8 */
+        unsigned json_parse_hex4();
+        std::string json_encode_utf8() noexcept;
 
         // indicate the error position
         Json error(const std::string& msg) const;
@@ -44,6 +47,7 @@ namespace rafaJSON
         Json json_parse_value();
         Json json_parse_literal(const std::string& literal);
         Json json_parse_number();
+        Json json_parse_string();
 
         /**
          * public parse interface

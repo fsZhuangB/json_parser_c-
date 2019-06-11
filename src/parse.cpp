@@ -33,6 +33,7 @@ namespace rafaJSON
              case 'n':  return json_parse_literal("null");
              case 't':  return json_parse_literal("true");
              case 'f':  return json_parse_literal("false");
+             case '\"': return json_parse_string();
              case '\0': return error("EXPECT VALUE");
              default:
                  return json_parse_number();
@@ -98,6 +99,79 @@ namespace rafaJSON
               error("NUMBER TOO BIG");
           _start = _curr;
           return Json(val); // reconstruct the json instance
+     }
+
+
+     Json Parser::json_parse_string()
+     {
+         return Json(json_parse_raw_string());
+     }
+
+     /**
+      * @param: void
+      * The syntax of string:
+      * string = quotation-mark *char quotation-mark
+      * char = unescaped /
+      * escape (
+      *    %x22 /          ; "    quotation mark  U+0022
+      *    %x5C /          ; \    reverse solidus U+005C
+      *    %x2F /          ; /    solidus         U+002F
+      *    %x62 /          ; b    backspace       U+0008
+      *    %x66 /          ; f    form feed       U+000C
+      *    %x6E /          ; n    line feed       U+000A
+      *    %x72 /          ; r    carriage return U+000D
+      *    %x74 /          ; t    tab             U+0009
+      *    %x75 4HEXDIG )  ; uXXXX                U+XXXX
+      *    escape = %x5C          ; \
+      *    quotation-mark = %x22  ; "
+      *    unescaped = %x20-21 / %x23-5B / %x5D-10FFFF
+      * */
+     std::string Parser::json_parse_raw_string()
+     {
+         /** we need a new string str to store the character we parse */
+         std::string str;
+         while (true)
+         {
+             switch (*++_curr)
+             {
+                 case '\"' : _start = ++_curr; return str;
+                 case '\0' :
+                     error("MISS QUOTATION MARK");
+                 default:
+                     if (static_cast<unsigned char>(*_curr) < 0x20)
+                         error("INVALID STRING CHAR");
+                     str.push_back(*_curr);
+                     break;
+
+                     /** when encounter escape character */
+                 case '\\':
+                     switch (*++_curr)
+                     {
+                         case '\"': str.push_back('\"');
+                             break;
+                         case '\\': str.push_back('\\');
+                             break;
+                         case '/': str.push_back('/');
+                             break;
+                         case 'b': str.push_back('\b');
+                             break;
+                         case 'n': str.push_back('\n');
+                             break;
+                         case 'f': str.push_back('\f');
+                             break;
+                         case 'r': str.push_back('\r');
+                             break;
+                         case 't': str.push_back('\t');
+                             break;
+                             /** \TODO parse utf8*/
+                         default:
+                             error("INVALID STRING ESCAPE");
+                     }
+                     break;
+             }
+         }
+
+
      }
 
 

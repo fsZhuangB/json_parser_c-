@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/Users/fszhuangb/Documents/rafa_json/json_test/test.cpp
+gtest/gtest.h
+-
+string
+-
+../src/json.hpp
+/Users/fszhuangb/Documents/rafa_json/src/json.hpp
+
 /Users/fszhuangb/Documents/rafa_json/src/json.hpp
 string
 -
@@ -31,24 +39,4 @@ jsonException.hpp
 /Users/fszhuangb/Documents/rafa_json/src/jsonException.hpp
 variant
 -
-
-/Users/fszhuangb/Documents/rafa_json/src/parse.cpp
-parse.hpp
-/Users/fszhuangb/Documents/rafa_json/src/parse.hpp
-cassert
--
-stdexcept
--
-cstring
--
-cmath
--
-cstdlib
--
-
-/Users/fszhuangb/Documents/rafa_json/src/parse.hpp
-json.hpp
-/Users/fszhuangb/Documents/rafa_json/src/json.hpp
-jsonException.hpp
-/Users/fszhuangb/Documents/rafa_json/src/jsonException.hpp
 

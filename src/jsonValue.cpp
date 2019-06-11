@@ -77,7 +77,6 @@ namespace rafaJSON
          {
              throw JsonException("Not a string");
          }
-
      }
 
 
