@@ -35,7 +35,7 @@ namespace rafaJSON
         std::string json_parse_raw_string();
         /** parse utf8 */
         unsigned json_parse_hex4();
-        std::string json_encode_utf8() noexcept;
+        std::string json_encode_utf8(unsigned) noexcept;
 
         // indicate the error position
         Json error(const std::string& msg) const;
