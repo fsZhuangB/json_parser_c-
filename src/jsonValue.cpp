@@ -20,10 +20,10 @@ namespace rafaJSON
             return json_type ::JSON_BOOL;
         else if (std::holds_alternative<double>(_val))
             return json_type ::JSON_NUMBER;
-        else
+        else if (std::holds_alternative<double>(_val))
             return json_type::JSON_STRING;
-//        else if (std::holds_alternative<Json::_array>(_val))
-//            return json_type::JSON_ARRAY;
+        else
+            return json_type::JSON_ARRAY;
 //        else
 //            return json_type::JSON_OBJECT;
     }
@@ -77,6 +77,43 @@ namespace rafaJSON
          {
              throw JsonException("Not a string");
          }
+     }
+
+     const Json::_array& json_value::json_value_to_array() const
+     {
+         try
+         {
+             return std::get<Json::_array>(_val);
+         }
+         catch (const std::bad_variant_access&)
+         {
+             throw JsonException("Not an array");
+         }
+
+     }
+
+     size_t json_value::size() const
+     {
+         if (std::holds_alternative<Json::_array>(_val))
+             return std::get<Json::_array>(_val).size();
+         else if (std::holds_alternative<Json::_object>(_val))
+             return std::get<Json::_object>(_val).size();
+         else
+             throw JsonException("Not an array or object");
+     }
+
+     /** overload operater[] for array */
+     Json& json_value::operator[](size_t pos)
+     {
+         return const_cast<Json&>(static_cast<const json_value&>(*this)[pos]);
+     }
+
+     const Json& json_value::operator[](size_t pos) const
+     {
+         if (std::holds_alternative<Json::_array>(_val))
+             return std::get<Json::_array>(_val)[pos];
+         else
+             throw JsonException("Not an array");
      }
 
 

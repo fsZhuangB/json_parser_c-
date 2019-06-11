@@ -43,6 +43,11 @@ namespace rafaJSON
          * \TODO: interface for array and object
          * */
     public:
+        size_t size() const;
+
+        /** random acess */
+        const Json& operator[](size_t) const;
+        Json& operator[](size_t);
 
 
         /**
@@ -53,12 +58,13 @@ namespace rafaJSON
         bool json_value_to_bool() const;
         double json_value_to_double() const;
         const std::string& json_value_to_string() const;
+        const Json::_array& json_value_to_array() const;
 
     /**
      * std::variant is a C++17 features,like union in C language
      * */
     private:
-        std::variant<std::nullptr_t, bool, double, std::string> _val;
+        std::variant<std::nullptr_t, bool, double, std::string, Json::_array> _val;
     };
 
 }

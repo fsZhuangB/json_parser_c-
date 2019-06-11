@@ -236,6 +236,39 @@ namespace rafaJSON
 
      /**
       * @param: void
+      * The syntax of array:
+      * array = %x5B ws [ value *( ws %x2C ws value ) ] ws %x5D
+      * */
+      Json Parser::json_parse_array()
+      {
+          Json::_array arr;
+          /** Jump '[' */
+          ++_curr;
+          json_parse_whitespace();
+          if (*_curr == ']')
+          {
+              _start = _curr;
+              return Json(arr);
+          }
+          while (true)
+          {
+              json_parse_whitespace();
+              /** recursive parse array */
+              arr.push_back(json_parse_value());
+              json_parse_whitespace();
+              if (*_curr == ',')
+                  ++_curr;
+              else if (*_curr == ']')
+              {
+                  _start = _curr;
+                  return Json(arr);
+              }
+              else
+                  error("MISS COMMA OR SQUARE BRACKET");
+          }
+      }
+     /**
+      * @param: void
       * ROOT NOT SINGULAR means some character still exists after the end whitespace
       * */
      Json Parser::parse()

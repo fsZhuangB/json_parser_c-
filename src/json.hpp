@@ -87,6 +87,7 @@ class json_value;
         bool json_value_is_Bool() const noexcept;
         bool json_value_is_Number() const noexcept;
         bool json_value_is_String() const noexcept;
+        bool json_value_is_Array() const noexcept;
 
 
         /**
@@ -96,6 +97,7 @@ class json_value;
         bool json_value_to_Bool() const;
         double json_value_to_Double() const;
         const std::string& json_value_to_String() const;
+        const Json::_array& json_value_to_Array() const;
 
         /**
          * parse && serialize interface
@@ -107,6 +109,14 @@ class json_value;
 
     public:
         void swap(Json&) noexcept; // make copy && swap
+
+        /**
+         * interface for array and object
+         * */
+        size_t json_get_size() const;
+        /** overload [] for array */
+        Json& operator[](size_t);
+        const Json& operator[](size_t) const;
 
         /**
          * data member

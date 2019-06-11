@@ -46,6 +46,7 @@ namespace rafaJSON
         Json json_parse_literal(const std::string& literal);
         Json json_parse_number();
         Json json_parse_string();
+        Json json_parse_array();
 
         /**
          * public parse interface
