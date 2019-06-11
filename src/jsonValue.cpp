@@ -20,12 +20,12 @@ namespace rafaJSON
             return json_type ::JSON_BOOL;
         else if (std::holds_alternative<double>(_val))
             return json_type ::JSON_NUMBER;
-        else if (std::holds_alternative<double>(_val))
+        else if (std::holds_alternative<std::string>(_val))
             return json_type::JSON_STRING;
-        else
+        else if (std::holds_alternative<Json::_array>(_val))
             return json_type::JSON_ARRAY;
-//        else
-//            return json_type::JSON_OBJECT;
+        else
+            return json_type::JSON_OBJECT;
     }
 
     /**

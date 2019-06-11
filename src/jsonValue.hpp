@@ -10,7 +10,8 @@
 
 namespace rafaJSON
 {
-    enum class json_type;
+//    class Json;
+//    enum class json_type;
     class json_value
     {
         /**
@@ -21,12 +22,14 @@ namespace rafaJSON
         explicit json_value(bool val) : _val(val) {}
         explicit json_value(double val) : _val(val) {}
         explicit json_value(const std::string& val) : _val(val) {}
+        explicit json_value(const Json::_array& val) : _val(val) {}
 
         /**
          * move ctor for string
          * */
     public:
         explicit json_value(std::string&& val) : _val(std::move(val)) {}
+        explicit json_value(Json::_array&& val) : _val(std::move(val)) {}
         /**
          * dtor
          * */
@@ -64,7 +67,7 @@ namespace rafaJSON
      * std::variant is a C++17 features,like union in C language
      * */
     private:
-        std::variant<std::nullptr_t, bool, double, std::string, Json::_array> _val;
+        std::variant<std::nullptr_t, bool, double, std::string, Json::_array, Json::_object> _val;
     };
 
 }

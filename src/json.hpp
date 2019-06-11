@@ -9,7 +9,6 @@
 #include <unordered_map>
 #include <vector>
 #include <variant>
-#include "jsonValue.hpp"
 
 namespace rafaJSON
 {
@@ -26,7 +25,7 @@ namespace rafaJSON
     /**
      * forward declaration for std::unique_ptr
      * */
-class json_value;
+    class json_value;
 
     class Json final
     {
@@ -125,4 +124,7 @@ class json_value;
         /** use _jsonValue as a pointer to json_value */
         std::unique_ptr<json_value> _jsonValue;
     };
+
+    /** non-member function */
+    bool operator==(const Json&, const Json&);
 }

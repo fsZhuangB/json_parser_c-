@@ -30,11 +30,12 @@ namespace rafaJSON
      {
          switch (*_curr)
          {
-             case 'n':  return json_parse_literal("null");
-             case 't':  return json_parse_literal("true");
-             case 'f':  return json_parse_literal("false");
-             case '\"': return json_parse_string();
-             case '\0': return error("EXPECT VALUE");
+             case 'n' :  return json_parse_literal("null");
+             case 't' :  return json_parse_literal("true");
+             case 'f' :  return json_parse_literal("false");
+             case '\"':  return json_parse_string();
+             case '[' :  return json_parse_array();
+             case '\0':  return error("EXPECT VALUE");
              default:
                  return json_parse_number();
          }
@@ -242,12 +243,12 @@ namespace rafaJSON
       Json Parser::json_parse_array()
       {
           Json::_array arr;
-          /** Jump '[' */
+          /** Skip '[' */
           ++_curr;
           json_parse_whitespace();
           if (*_curr == ']')
           {
-              _start = _curr;
+              _start = ++_curr;
               return Json(arr);
           }
           while (true)
@@ -260,7 +261,7 @@ namespace rafaJSON
                   ++_curr;
               else if (*_curr == ']')
               {
-                  _start = _curr;
+                  _start = ++_curr;
                   return Json(arr);
               }
               else

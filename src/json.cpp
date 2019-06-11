@@ -156,4 +156,24 @@ namespace rafaJSON
           }
 
       }
+      bool operator==(const Json& lhs, const Json& rhs)
+      {
+          if (lhs.json_get_type() != rhs.json_get_type())
+              return false;
+          switch (lhs.json_get_type())
+          {
+              case json_type ::JSON_NULL:
+                  return true;
+              case json_type ::JSON_BOOL:
+                  return lhs.json_value_to_Bool() == rhs.json_value_to_Bool();
+              case json_type ::JSON_NUMBER:
+                  return lhs.json_value_to_Double() == rhs.json_value_to_Double();
+              case json_type ::JSON_STRING:
+                  return lhs.json_value_to_String() == rhs.json_value_to_String();
+              case json_type ::JSON_ARRAY:
+                  return lhs.json_value_to_Array() == rhs.json_value_to_Array();
+//              default:
+//                  return lhs.jso
+          }
+      }
 }

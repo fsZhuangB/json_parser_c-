@@ -131,3 +131,19 @@ TEST(Str2Json, JsonString)
     json = Json("another thing");
     EXPECT_EQ(json.json_value_to_String(), "another thing");
 }
+
+TEST(Str2Json, JsonArray)
+{
+    Json json = parse_ok("[ ]");
+    EXPECT_TRUE(json.json_value_is_Array());
+    EXPECT_EQ(json.json_get_size(), 0);
+
+    json = parse_ok("[null, false, true, 123, \"abc\"]");
+    EXPECT_TRUE(json.json_value_is_Array());
+    EXPECT_EQ(json.json_get_size(), 5);
+    // EXPECT_EQ(json[0], Json(nullptr));
+    EXPECT_EQ(json[1], Json(false));
+    EXPECT_EQ(json[2], Json(true));
+    EXPECT_EQ(json[3], Json(123.0));
+    EXPECT_EQ(json[4], Json("abc"));
+}
