@@ -141,9 +141,25 @@ TEST(Str2Json, JsonArray)
     json = parse_ok("[null, false, true, 123, \"abc\"]");
     EXPECT_TRUE(json.json_value_is_Array());
     EXPECT_EQ(json.json_get_size(), 5);
-    // EXPECT_EQ(json[0], Json(nullptr));
+    EXPECT_EQ(json[0], Json(nullptr));
     EXPECT_EQ(json[1], Json(false));
     EXPECT_EQ(json[2], Json(true));
     EXPECT_EQ(json[3], Json(123.0));
     EXPECT_EQ(json[4], Json("abc"));
+
+    json = parse_ok("[[], [0], [0, 1], [0, 1, 2]]");
+    EXPECT_TRUE(json.json_value_is_Array());
+    EXPECT_EQ(json.json_get_size(), 4);
+    for (int i = 0; i < 4; i++)
+    {
+        Json json2 = json[i];
+        EXPECT_TRUE(json2.json_value_is_Array());
+        EXPECT_EQ(json2.json_get_size(), i);
+        for (int j = 0; j <= i; j++)
+        {
+            EXPECT_TRUE(json2.json_value_is_Array());
+            EXPECT_EQ(json2.json_get_size(), j);
+            EXPECT_EQ(json2[j], j);
+        }
+    }
 }
