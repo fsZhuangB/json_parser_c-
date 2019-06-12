@@ -163,3 +163,41 @@ TEST(Str2Json, JsonArray)
         }
     }
 }
+
+TEST(Str2Json, JsonObject) {
+    Json json = parse_ok("{ }");
+    EXPECT_TRUE(json.json_value_is_Object());
+    EXPECT_EQ(json.json_get_size(), 0);
+
+    json = parse_ok(" { "
+                   "\"n\" : null , "
+                   "\"f\" : false , "
+                   "\"t\" : true , "
+                   "\"i\" : 123 , "
+                   "\"s\" : \"abc\", "
+                   "\"a\" : [ 1, 2, 3 ],"
+                   "\"o\" : { \"1\" : 1, \"2\" : 2, \"3\" : 3 }"
+                   " } ");
+    EXPECT_TRUE(json.json_value_is_Object());
+    EXPECT_EQ(json.json_get_size(), 7);
+
+    EXPECT_TRUE(json["n"].json_value_is_Null());
+
+    EXPECT_TRUE(json["f"].json_value_is_Bool());
+    EXPECT_EQ(json["f"].json_value_to_Bool(), false);
+
+    EXPECT_TRUE(json["t"].json_value_is_Bool());
+    EXPECT_EQ(json["t"].json_value_to_Bool(), true);
+
+    EXPECT_TRUE(json["i"].json_value_is_Number());
+    EXPECT_EQ(json["i"].json_value_to_Double(), 123.0);
+
+    EXPECT_TRUE(json["s"].json_value_is_String());
+    EXPECT_EQ(json["s"].json_value_to_String(), "abc");
+
+    EXPECT_TRUE(json["a"].json_value_is_Array());
+    EXPECT_EQ(json["a"].json_value_to_Array(), 3);
+
+    EXPECT_TRUE(json["o"].json_value_is_Object());
+    EXPECT_EQ(json["o"].json_get_size(), 3);
+}

@@ -47,6 +47,7 @@ namespace rafaJSON
         Json json_parse_number();
         Json json_parse_string();
         Json json_parse_array();
+        Json json_parse_object();
 
         /**
          * public parse interface

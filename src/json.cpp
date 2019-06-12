@@ -41,6 +41,8 @@ namespace rafaJSON
                 break;
             case json_type ::JSON_ARRAY: _jsonValue = std::make_unique<json_value>(rhs.json_value_to_Array());
                 break;
+            case json_type ::JSON_OBJECT: _jsonValue = std::make_unique<json_value>(rhs.json_value_to_Object());
+                break;
         }
     }
 
@@ -128,8 +130,8 @@ namespace rafaJSON
                   return lhs.json_value_to_String() == rhs.json_value_to_String();
               case json_type ::JSON_ARRAY:
                   return lhs.json_value_to_Array() == rhs.json_value_to_Array();
-//              default:
-//                  return lhs.jso
+              default:
+                  return lhs.json_value_to_Object() == rhs.json_value_to_Object();
           }
       }
 }

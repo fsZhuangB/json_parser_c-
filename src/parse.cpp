@@ -35,6 +35,7 @@ namespace rafaJSON
              case 'f' :  return json_parse_literal("false");
              case '\"':  return json_parse_string();
              case '[' :  return json_parse_array();
+             case '{' :  return json_parse_object();
              case '\0':  return error("EXPECT VALUE");
              default:
                  return json_parse_number();
@@ -268,6 +269,48 @@ namespace rafaJSON
                   error("MISS COMMA OR SQUARE BRACKET");
           }
       }
+
+      /**
+       * @parm: void
+       * The syntax of object:
+       * member = string ws %x3A ws value
+       * object = %x7B ws [ member *( ws %x2C ws member ) ] ws %x7D
+       * */
+       Json Parser::json_parse_object()
+       {
+           Json::_object obj;
+           ++_curr;
+           json_parse_whitespace();
+           if (*_curr == '}')
+           {
+               _start = ++_curr;
+               return Json(obj);
+           }
+           while (1)
+           {
+               json_parse_whitespace();
+               if (*_curr != '"')
+                   error("MISS KEY!");
+               /** parse the key */
+               std::string key = json_parse_raw_string();
+               json_parse_whitespace();
+               if (*++_curr != ':')
+                   error("MISS COLON");
+               json_parse_whitespace();
+               /** recursive parse value */
+               Json val = json_parse_value();
+               obj.insert({ key, val });
+               if (*_curr == ',')
+                   ++_curr;
+               else if (*_curr == '}')
+               {
+                   _start = ++_curr;
+                   return Json(obj);
+               }
+               else
+                   error("MISS COMMA OR CURLY BRACKET");
+           }
+       }
      /**
       * @param: void
       * ROOT NOT SINGULAR means some character still exists after the end whitespace
