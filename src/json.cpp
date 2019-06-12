@@ -19,6 +19,8 @@ namespace rafaJSON
      Json::Json(std::string&& val) : _jsonValue(std::make_unique<json_value>(std::move(val))) {}
      Json::Json(const _array& val) : _jsonValue(std::make_unique<json_value>(val)) {}
      Json::Json(_array&& val) : _jsonValue(std::make_unique<json_value>(std::move(val))) {}
+     Json::Json(const _object& val) : _jsonValue(std::make_unique<json_value>(val)) {}
+     Json::Json(_object&& val) : _jsonValue(std::make_unique<json_value>(std::move(val))) {}
 
      Json::~Json() = default;
 
@@ -58,62 +60,23 @@ namespace rafaJSON
      /**
       * type interface
       * */
-     json_type Json::json_get_type() const noexcept
-     {
-         /**
-          * package a new method to get the type
-          * */
-         return _jsonValue->json_get_type();
-     }
+     json_type Json::json_get_type() const noexcept{ return _jsonValue->json_get_type(); }
 
-     bool Json::json_value_is_Null() const noexcept
-     {
-         return json_get_type() == json_type ::JSON_NULL;
-     }
-
-     bool Json::json_value_is_Bool() const noexcept
-     {
-         return json_get_type() == json_type ::JSON_BOOL;
-     }
-
-     bool Json::json_value_is_Number() const noexcept
-     {
-         return json_get_type() == json_type ::JSON_NUMBER;
-     }
-
-     bool Json::json_value_is_String() const noexcept
-     {
-         return json_get_type() == json_type ::JSON_STRING;
-     }
-
-     bool Json::json_value_is_Array() const noexcept
-     {
-         return json_get_type() == json_type ::JSON_ARRAY;
-     }
-
+     bool Json::json_value_is_Null() const noexcept{ return json_get_type() == json_type ::JSON_NULL; }
+     bool Json::json_value_is_Bool() const noexcept{ return json_get_type() == json_type ::JSON_BOOL; }
+     bool Json::json_value_is_Number() const noexcept{ return json_get_type() == json_type ::JSON_NUMBER; }
+     bool Json::json_value_is_String() const noexcept{ return json_get_type() == json_type ::JSON_STRING; }
+     bool Json::json_value_is_Array()  const noexcept{ return json_get_type() == json_type ::JSON_ARRAY; }
+     bool Json::json_value_is_Object() const noexcept{ return json_get_type() == json_type ::JSON_OBJECT; }
      /**
       * parse interface:
       * convert json object into value instance
       * */
-      bool Json::json_value_to_Bool() const
-      {
-          return _jsonValue->json_value_to_bool();
-      }
-
-      double Json::json_value_to_Double() const
-      {
-          return _jsonValue->json_value_to_double();
-      }
-
-      const std::string& Json::json_value_to_String() const
-      {
-          return _jsonValue->json_value_to_string();
-      }
-
-      const Json::_array& Json::json_value_to_Array() const
-      {
-          return _jsonValue->json_value_to_array();
-      }
+      bool Json::json_value_to_Bool() const{ return _jsonValue->json_value_to_bool(); }
+      double Json::json_value_to_Double() const{ return _jsonValue->json_value_to_double(); }
+      const std::string& Json::json_value_to_String() const{ return _jsonValue->json_value_to_string(); }
+      const Json::_array& Json::json_value_to_Array() const{ return _jsonValue->json_value_to_array(); }
+      const Json::_object& Json::json_value_to_Object() const{ return _jsonValue->json_value_to_object(); }
 
       /** aux interface copy && swap */
       void Json::swap(rafaJSON::Json &rhs) noexcept
@@ -125,20 +88,13 @@ namespace rafaJSON
       /**
       * interface for array and object
       * */
-      size_t Json::json_get_size() const
-      {
-          return _jsonValue->size();
-      }
-
-      Json& Json::operator[](size_t pos)
-      {
-          return _jsonValue->operator[](pos);
-      }
-
-      const Json& Json::operator[](size_t pos) const
-      {
-          return _jsonValue->operator[](pos);
-      }
+      size_t Json::json_get_size() const{ return _jsonValue->size(); }
+      /** overload operator[] for array */
+      Json& Json::operator[](size_t pos){ return _jsonValue->operator[](pos); }
+      const Json& Json::operator[](size_t pos) const{ return _jsonValue->operator[](pos); }
+      /** for object */
+      Json& Json::operator[](const std::string &key) { return _jsonValue->operator[](key); }
+      const Json& Json::operator[](const std::string &key) const { return _jsonValue->operator[](key); }
 
 
       /** parse interface */

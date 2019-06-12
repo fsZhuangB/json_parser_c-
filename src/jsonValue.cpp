@@ -39,7 +39,7 @@ namespace rafaJSON
          }
          catch (const std::bad_variant_access&)
          {
-             throw JsonException("Not a null");
+             throw JsonException("NOT A NULL");
          }
      }
 
@@ -51,7 +51,7 @@ namespace rafaJSON
          }
          catch (const std::bad_variant_access&)
          {
-             throw JsonException("Not a bool");
+             throw JsonException("NOT A BOOL");
          }
      }
 
@@ -63,7 +63,7 @@ namespace rafaJSON
          }
          catch (const std::bad_variant_access&)
          {
-             throw JsonException("Not a double");
+             throw JsonException("NOT A DOUBLE");
          }
      }
 
@@ -75,7 +75,7 @@ namespace rafaJSON
          }
          catch (const std::bad_variant_access&)
          {
-             throw JsonException("Not a string");
+             throw JsonException("NOT A STRING");
          }
      }
 
@@ -87,7 +87,19 @@ namespace rafaJSON
          }
          catch (const std::bad_variant_access&)
          {
-             throw JsonException("Not an array");
+             throw JsonException("NOT AN ARRAY");
+         }
+     }
+
+     const Json::_object& json_value::json_value_to_object() const
+     {
+         try
+         {
+             return std::get<Json::_object>(_val);
+         }
+         catch (const std::bad_variant_access&)
+         {
+             throw JsonException("NOT AN OBJECT");
          }
 
      }
@@ -99,10 +111,10 @@ namespace rafaJSON
          else if (std::holds_alternative<Json::_object>(_val))
              return std::get<Json::_object>(_val).size();
          else
-             throw JsonException("Not an array or object");
+             throw JsonException("NOT AN ARRAY OR OBJECT");
      }
 
-     /** overload operater[] for array */
+     /** overload operator[] for array */
      Json& json_value::operator[](size_t pos)
      {
          return const_cast<Json&>(static_cast<const json_value&>(*this)[pos]);
@@ -113,9 +125,21 @@ namespace rafaJSON
          if (std::holds_alternative<Json::_array>(_val))
              return std::get<Json::_array>(_val)[pos];
          else
-             throw JsonException("Not an array");
+             throw JsonException("NOT AN ARRAY");
      }
 
+     /** overload operator[] for object */
+     Json& json_value::operator[](const std::string &key)
+     {
+         return const_cast<Json&>(static_cast<const json_value&>(*this)[key]);
+     }
 
+     const Json& json_value::operator[](const std::string &key) const
+     {
+         if (std::holds_alternative<Json::_object>(_val))
+             return std::get<Json::_object>(_val).at(key);
+         else
+             throw JsonException("NOT AN OBJECT");
+     }
 
 }

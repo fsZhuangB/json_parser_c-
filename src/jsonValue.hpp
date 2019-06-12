@@ -23,6 +23,7 @@ namespace rafaJSON
         explicit json_value(double val) : _val(val) {}
         explicit json_value(const std::string& val) : _val(val) {}
         explicit json_value(const Json::_array& val) : _val(val) {}
+        explicit json_value(const Json::_object& val) : _val(val) {}
 
         /**
          * move ctor for string
@@ -30,6 +31,7 @@ namespace rafaJSON
     public:
         explicit json_value(std::string&& val) : _val(std::move(val)) {}
         explicit json_value(Json::_array&& val) : _val(std::move(val)) {}
+        explicit json_value(Json::_object&& val) : _val(std::move(val)) {}
         /**
          * dtor
          * */
@@ -52,6 +54,9 @@ namespace rafaJSON
         const Json& operator[](size_t) const;
         Json& operator[](size_t);
 
+        const Json& operator[](const std::string&) const;
+        Json& operator[](const std::string&);
+
 
         /**
          * convert json_value into value instance
@@ -62,6 +67,7 @@ namespace rafaJSON
         double json_value_to_double() const;
         const std::string& json_value_to_string() const;
         const Json::_array& json_value_to_array() const;
+        const Json::_object& json_value_to_object() const;
 
     /**
      * std::variant is a C++17 features,like union in C language

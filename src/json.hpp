@@ -52,8 +52,26 @@ namespace rafaJSON
         Json(const _array&);
         Json(_array&&);
         Json(const _object&);
-        Json(_object);
+        Json(_object&&);
 
+    public:
+        /** implicit ctor for objects */
+        /** std::is_constructible: If T is an object or reference type and the variable
+         *  definition T obj(std::declval<Args>()...); is well-formed,
+         *  provides the member constant value equal to true.
+         *  In all other cases, value is false.
+         * */
+
+         /** Implicit constructor: map-like objects (std::map, std::unordered_map, etc) */
+        template <class M, typename std::enable_if<
+                std::is_constructible<std::string, decltype(std::declval<M>().begin()->first)>::value
+                && std::is_constructible<Json, decltype(std::declval<M>().begin()->second)>::value, int>::type = 0>
+        Json(const M& m) : Json(_object(m.begin(), m.end())) {}
+
+        /** Implicit constructor: vector-like objects (std::list, std::vector, std::set, etc)*/
+        template <class V, typename std::enable_if<
+                std::is_constructible<Json, decltype(*std::declval<V>().begin())>::value, int>::type = 0>
+        Json(const V& v) : Json(_object(v.begin(), v.end())) {}
         /**
          * this prevent Json(some_pointer) from accidentally producing a bool
          * */
@@ -87,6 +105,7 @@ namespace rafaJSON
         bool json_value_is_Number() const noexcept;
         bool json_value_is_String() const noexcept;
         bool json_value_is_Array() const noexcept;
+        bool json_value_is_Object() const noexcept;
 
 
         /**
@@ -97,6 +116,7 @@ namespace rafaJSON
         double json_value_to_Double() const;
         const std::string& json_value_to_String() const;
         const Json::_array& json_value_to_Array() const;
+        const Json::_object& json_value_to_Object() const;
 
         /**
          * parse && serialize interface
@@ -111,11 +131,18 @@ namespace rafaJSON
 
         /**
          * interface for array and object
+         * The first kind: not only we can access the value, but also we can change the value
+         * 1. return_value & operator[](parameter)
+         * The second kind: we can only access the value
+         * 2. const return_value & operator[](parameter) const;
          * */
         size_t json_get_size() const;
         /** overload [] for array */
         Json& operator[](size_t);
         const Json& operator[](size_t) const;
+        /** for object */
+        Json& operator[](const std::string&);
+        const Json& operator[](const std::string&) const;
 
         /**
          * data member
