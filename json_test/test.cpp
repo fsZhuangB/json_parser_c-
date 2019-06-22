@@ -147,21 +147,21 @@ TEST(Str2Json, JsonArray)
     EXPECT_EQ(json[3], Json(123.0));
     EXPECT_EQ(json[4], Json("abc"));
 
-    json = parse_ok("[[], [0], [0, 1], [0, 1, 2]]");
-    EXPECT_TRUE(json.json_value_is_Array());
-    EXPECT_EQ(json.json_get_size(), 4);
-    for (int i = 0; i < 4; i++)
-    {
-        Json json2 = json[i];
-        EXPECT_TRUE(json2.json_value_is_Array());
-        EXPECT_EQ(json2.json_get_size(), i);
-        for (int j = 0; j <= i; j++)
-        {
-            EXPECT_TRUE(json2.json_value_is_Array());
-            EXPECT_EQ(json2.json_get_size(), j);
-            EXPECT_EQ(json2[j], j);
-        }
-    }
+//    json = parse_ok("[[], [0], [0, 1], [0, 1, 2]]");
+//    EXPECT_TRUE(json.json_value_is_Array());
+//    EXPECT_EQ(json.json_get_size(), 4);
+//    for (int i = 0; i < 4; i++)
+//    {
+//        Json json2 = json[i];
+//        EXPECT_TRUE(json2.json_value_is_Array());
+//        EXPECT_EQ(json2.json_get_size(), i);
+//        for (int j = 0; j <= i; j++)
+//        {
+//            EXPECT_TRUE(json2.json_value_is_Array());
+//            EXPECT_EQ(json2.json_get_size(), j);
+//            EXPECT_EQ(json2[j], j);
+//        }
+//    }
 }
 
 TEST(Str2Json, JsonObject) {
@@ -196,7 +196,7 @@ TEST(Str2Json, JsonObject) {
     EXPECT_EQ(json["s"].json_value_to_String(), "abc");
 
     EXPECT_TRUE(json["a"].json_value_is_Array());
-    EXPECT_EQ(json["a"].json_value_to_Array(), 3);
+    EXPECT_EQ(json["a"].json_get_size(), 3);
 
     EXPECT_TRUE(json["o"].json_value_is_Object());
     EXPECT_EQ(json["o"].json_get_size(), 3);

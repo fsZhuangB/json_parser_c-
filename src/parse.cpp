@@ -286,7 +286,7 @@ namespace rafaJSON
                _start = ++_curr;
                return Json(obj);
            }
-           while (1)
+           while (true)
            {
                json_parse_whitespace();
                if (*_curr != '"')
@@ -294,12 +294,13 @@ namespace rafaJSON
                /** parse the key */
                std::string key = json_parse_raw_string();
                json_parse_whitespace();
-               if (*++_curr != ':')
+               if (*_curr++ != ':')
                    error("MISS COLON");
                json_parse_whitespace();
                /** recursive parse value */
                Json val = json_parse_value();
                obj.insert({ key, val });
+               json_parse_whitespace();
                if (*_curr == ',')
                    ++_curr;
                else if (*_curr == '}')
